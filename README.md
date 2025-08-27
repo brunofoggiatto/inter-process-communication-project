@@ -17,25 +17,24 @@ ipc-project/
 ├── README.md
 ├── backend/
 │   ├── src/
-│   │   ├── main.cpp
-│   │   ├── server/
-│   │   │   ├── http_server.cpp
-│   │   │   └── http_server.h
-│   │   ├── ipc/
-│   │   │   ├── pipe_manager.cpp
-│   │   │   ├── pipe_manager.h
-│   │   │   ├── socket_manager.cpp
-│   │   │   ├── socket_manager.h
-│   │   │   ├── shmem_manager.cpp
-│   │   │   └── shmem_manager.h
-│   │   └── common/
-│   │       ├── logger.cpp
-│   │       └── logger.h
-│   ├── tests/
-│   └── 
-├── frontend/
-│   └── index.html
-└── tests/
+│       ├── main.cpp
+│       ├── server/
+│       │   ├── http_server.cpp
+│       │   └── http_server.h
+│       ├── ipc/
+│       │   ├── pipe_manager.cpp
+│       │   ├── pipe_manager.h
+│       │   ├── socket_manager.cpp
+│       │   ├── socket_manager.h
+│       │   ├── shmem_manager.cpp
+│       │   └── shmem_manager.h
+│       └── common/
+│           ├── logger.cpp
+│           └── logger.h
+├── frontend/   
+├── └── index.html
+├── tests/  
+└── docs/
 ```
 
 ### System Architecture
@@ -90,6 +89,30 @@ ipc-project/
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Team Development Guide
+
+### Programmer Responsibilities
+
+**Backend Developer (C++23)**
+- Implement HTTP server (`http_server.cpp/h`)
+- Complete IPC managers (pipes, sockets, shared memory)
+- Add main application entry point (`main.cpp`)
+- Integrate logging system
+- Handle REST API endpoints for frontend communication
+
+**Frontend Developer (HTML/JavaScript)**
+- Create interactive web interface (`index.html`)
+- Implement real-time data visualization
+- Add controls for testing each IPC mechanism
+- Display performance metrics and comparisons
+- Handle HTTP requests to backend API
+
+**Testing & Integration**
+- Write unit tests for IPC mechanisms
+- Create integration tests for full system
+- Performance benchmarking scripts
+- Documentation and usage examples
 
 ## Author
 
