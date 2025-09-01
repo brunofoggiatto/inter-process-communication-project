@@ -94,31 +94,25 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Programmer Responsibilities
 
-**Backend Developer (C++23)**
-- Implement HTTP server (`http_server.cpp/h`)
-- Complete IPC managers (pipes, sockets, shared memory)
-- Add main application entry point (`main.cpp`)
-- Integrate logging system
-- Handle REST API endpoints for frontend communication
+**Bruno Henrique Foggiatto**
+- Logger
+- Socket Manager (C++)
+- Pipe Manager (C++)
+- Html/Javascrpit Frontend
 
-**Frontend Developer (HTML/JavaScript)**
-- Create interactive web interface (`index.html`)
-- Implement real-time data visualization
-- Add controls for testing each IPC mechanism
-- Display performance metrics and comparisons
-- Handle HTTP requests to backend API
+**Luiz Felipe Greboge**
+- Memory Shared (C++)
+- IPC main
+- HTTP server
+- Tests & Integratrion
 
-**Testing & Integration**
-- Write unit tests for IPC mechanisms
-- Create integration tests for full system
-- Performance benchmarking scripts
-- Documentation and usage examples
-
-## Author
+## Authors
 
 **Bruno Henrique Foggiatto**
 - GitHub: [@brunofoggiatto](https://github.com/brunofoggiatto)
 - Email: brunohfoggiatto@gmail.com
+**Luiz Felipe Greboge**
+- Github: [@luizgre](https://github.com/luizgre)
 
 ---
 
