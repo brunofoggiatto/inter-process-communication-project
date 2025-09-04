@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 3.14)
+project(IPCTests)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Google Test setup
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  URL https://github.com/google/googletest/archive/03597a01ee50e33f9ced8f2d39b962b8b0dde1c3.zip
+  URL https://github.com/google/googletest/archive/v1.14.0.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
 # For Windows: Prevent overriding the parent project's compiler/linker settings
@@ -25,6 +31,8 @@ add_executable(
   unit/test_http_server.cpp
   ../backend/src/common/logger.cpp
   ../backend/src/ipc/shmem_manager.cpp
+  ../backend/src/ipc/pipe_manager.cpp
+  ../backend/src/ipc/socket_manager.cpp
   ../backend/src/ipc/ipc_coordinator.cpp
   ../backend/src/server/http_server.cpp
 )
@@ -41,6 +49,8 @@ add_executable(
   integration/test_full_flow.cpp
   ../backend/src/common/logger.cpp
   ../backend/src/ipc/shmem_manager.cpp
+  ../backend/src/ipc/pipe_manager.cpp
+  ../backend/src/ipc/socket_manager.cpp
   ../backend/src/ipc/ipc_coordinator.cpp
   ../backend/src/server/http_server.cpp
 )
