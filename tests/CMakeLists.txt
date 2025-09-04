@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.14)
+project(IPCTests)
 
 # Google Test setup
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  URL https://github.com/google/googletest/archive/03597a01ee50e33f9ced8f2d39b962b8b0dde1c3.zip
+  URL https://github.com/google/googletest/archive/v1.14.0.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
 # For Windows: Prevent overriding the parent project's compiler/linker settings
