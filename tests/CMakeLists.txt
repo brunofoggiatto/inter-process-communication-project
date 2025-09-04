@@ -31,6 +31,8 @@ add_executable(
   unit/test_http_server.cpp
   ../backend/src/common/logger.cpp
   ../backend/src/ipc/shmem_manager.cpp
+  ../backend/src/ipc/pipe_manager.cpp
+  ../backend/src/ipc/socket_manager.cpp
   ../backend/src/ipc/ipc_coordinator.cpp
   ../backend/src/server/http_server.cpp
 )
@@ -47,6 +49,8 @@ add_executable(
   integration/test_full_flow.cpp
   ../backend/src/common/logger.cpp
   ../backend/src/ipc/shmem_manager.cpp
+  ../backend/src/ipc/pipe_manager.cpp
+  ../backend/src/ipc/socket_manager.cpp
   ../backend/src/ipc/ipc_coordinator.cpp
   ../backend/src/server/http_server.cpp
 )
