@@ -1,2 +1,0 @@
-/usr/bin/ar qc libipc_server.a CMakeFiles/ipc_server.dir/src/server/http_server.cpp.o
-/usr/bin/ranlib libipc_server.a

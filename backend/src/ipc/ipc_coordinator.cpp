@@ -197,6 +197,12 @@ bool IPCCoordinator::startMechanism(IPCMechanism mechanism) {
     logger_.info("Iniciando mecanismo: " + mech_name, "COORDINATOR");
     
     try {
+        // Evita reinitialização se já estiver ativo
+        auto it = mechanism_status_.find(mechanism);
+        if (it != mechanism_status_.end() && it->second) {
+            logger_.info(mech_name + " já está ativo; ignorando start duplicado", "COORDINATOR");
+            return true;
+        }
         bool success = false;
         
         switch (mechanism) {
@@ -232,6 +238,29 @@ bool IPCCoordinator::stopMechanism(IPCMechanism mechanism) {
     logger_.info("Parando mecanismo: " + mech_name, "COORDINATOR");
     
     mechanism_status_[mechanism] = false;
+    
+    // Pede para cada manager encerrar e liberar recursos
+    try {
+        switch (mechanism) {
+            case IPCMechanism::PIPES:
+                if (pipe_manager_ && pipe_manager_->isActive()) {
+                    pipe_manager_->closePipe();
+                }
+                break;
+            case IPCMechanism::SOCKETS:
+                if (socket_manager_ && socket_manager_->isActive()) {
+                    socket_manager_->closeSocket();
+                }
+                break;
+            case IPCMechanism::SHARED_MEMORY:
+                if (shmem_manager_ && shmem_manager_->isActive()) {
+                    shmem_manager_->destroySharedMemory();
+                }
+                break;
+        }
+    } catch (const std::exception& e) {
+        logger_.error("Erro ao parar mecanismo " + mech_name + ": " + e.what(), "COORDINATOR");
+    }
     
     // Remove PID se existir
     auto pid_it = mechanism_pids_.find(mechanism);
@@ -426,6 +455,39 @@ std::string IPCCoordinator::executeCommand(const IPCCommand& command) {
 
 std::string IPCCoordinator::getStatusJSON() const {
     return getFullStatus().toJSON();
+}
+
+std::string IPCCoordinator::getMechanismDetailJSON(IPCMechanism mechanism) const {
+    std::stringstream ss;
+    // Status do mecanismo
+    auto status = getMechanismStatus(mechanism).toJSON();
+
+    // Última operação específica de cada manager (já no formato JSON)
+    std::string last_json = "{}";
+    switch (mechanism) {
+        case IPCMechanism::PIPES:
+            if (pipe_manager_ && pipe_manager_->isActive()) {
+                last_json = pipe_manager_->getLastOperation().toJSON();
+            }
+            break;
+        case IPCMechanism::SOCKETS:
+            if (socket_manager_ && socket_manager_->isActive()) {
+                last_json = socket_manager_->getLastOperation().toJSON();
+            }
+            break;
+        case IPCMechanism::SHARED_MEMORY:
+            if (shmem_manager_ && shmem_manager_->isActive()) {
+                last_json = shmem_manager_->getLastOperation().toJSON();
+            }
+            break;
+    }
+
+    // Monta JSON final com objetos embutidos (sem aspas)
+    ss << "{\"mechanism\":\"" << mechanismToString(mechanism) << "\",";
+    ss << "\"status\":" << status << ",";
+    ss << "\"last_operation\":" << last_json;
+    ss << "}";
+    return ss.str();
 }
 
 void IPCCoordinator::printStatus() const {

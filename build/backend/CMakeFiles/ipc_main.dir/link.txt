@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/ipc_main.dir/src/main.cpp.o -o ../bin/ipc_system  libipc_server.a libipc_core.a libipc_common.a -lrt 

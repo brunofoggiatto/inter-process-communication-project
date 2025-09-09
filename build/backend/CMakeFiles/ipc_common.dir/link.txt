@@ -1,2 +1,0 @@
-/usr/bin/ar qc libipc_common.a CMakeFiles/ipc_common.dir/src/common/logger.cpp.o
-/usr/bin/ranlib libipc_common.a

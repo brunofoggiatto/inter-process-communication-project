@@ -1,5 +1,0 @@
-if(EXISTS "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests[1]_tests.cmake")
-  include("/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests[1]_tests.cmake")
-else()
-  add_test(integration_tests_NOT_BUILT integration_tests_NOT_BUILT)
-endif()

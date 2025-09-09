@@ -1,10 +1,11 @@
 // Módulo principal da aplicação IPC - gerencia a interface e comunicação
 class IPCDashboard {
     constructor() {
+        this.baseURL = window.location.origin;
         this.methods = {
-            pipe: { name: 'Anonymous Pipes', active: false },
-            socket: { name: 'Local Sockets', active: false },
-            shmem: { name: 'Shared Memory', active: false }
+            pipes: { name: 'Anonymous Pipes', active: false },
+            sockets: { name: 'Local Sockets', active: false },
+            shared_memory: { name: 'Shared Memory', active: false }
         };
         
         this.messages = [];
@@ -16,6 +17,9 @@ class IPCDashboard {
     setup() {
         this.bindEvents();
         this.logMessage('System initialized. Ready to start IPC testing.', 'info');
+        // Atualizações periódicas
+        this.refreshAll();
+        this.poller = setInterval(() => this.refreshAll(), 1000);
     }
 
     // Conecta todos os eventos da interface com suas funções
@@ -48,19 +52,28 @@ class IPCDashboard {
         window.addEventListener('resize', () => this.updateLayout());
     }
 
+    // Obtém mecanismo a partir do card
+    getMethod(card) {
+        return card?.dataset?.mech || null;
+    }
+
     // Lida com o clique no botão Start de qualquer método IPC  
     startMethod(event) {
         const card = event.target.closest('.ipc-card');
         const method = this.getMethod(card);
-        
-        if (method && !this.methods[method].active) {
-            this.methods[method].active = true;
-            this.updateCard(card, true);
-            this.logMessage(`${this.methods[method].name} started successfully`, 'info');
-            
-            // Simula conexão - em produção seria uma chamada real para o backend
-            this.connectMethod(method);
-        }
+        if (!method) return;
+        fetch(`${this.baseURL}/ipc/start/${method}`, { method: 'POST' })
+            .then(r => r.json().catch(() => ({})))
+            .then(() => {
+                this.logMessage(`${this.methods[method].name} started`, 'started');
+                // Atualiza UI imediatamente
+                const card = document.querySelector(`.ipc-card[data-mech="${method}"]`);
+                if (card) this.updateCard(card, true);
+                this.methods[method].active = true;
+                // Atualiza detalhes após start
+                this.refreshDetails(method);
+            })
+            .catch(() => this.logMessage(`Failed to start ${method}`, 'error'));
     }
 
     // Lida com o clique no botão Stop de qualquer método IPC
@@ -68,11 +81,17 @@ class IPCDashboard {
         const card = event.target.closest('.ipc-card');
         const method = this.getMethod(card);
         
-        if (method && this.methods[method].active) {
-            this.methods[method].active = false;
-            this.updateCard(card, false);
-            this.logMessage(`${this.methods[method].name} stopped`, 'info');
-        }
+        if (!method) return;
+        fetch(`${this.baseURL}/ipc/stop/${method}`, { method: 'POST' })
+            .then(r => r.json().catch(() => ({})))
+            .then(() => {
+                this.logMessage(`${this.methods[method].name} stopped`, 'stopped');
+                // Atualiza UI imediatamente
+                const card = document.querySelector(`.ipc-card[data-mech="${method}"]`);
+                if (card) this.updateCard(card, false);
+                this.methods[method].active = false;
+            })
+            .catch(() => this.logMessage(`Failed to stop ${method}`, 'error'));
     }
 
     // Processa o envio de mensagens quando usuário clica Send ou aperta Enter
@@ -81,7 +100,8 @@ class IPCDashboard {
         const select = document.querySelector('.message-controls select');
         
         const text = input.value.trim();
-        const method = select.value;
+        const mapSelect = { pipe: 'pipes', socket: 'sockets', shmem: 'shared_memory' };
+        const method = mapSelect[select.value] || '';
         
         // Validações antes de enviar
         if (!text) {
@@ -94,7 +114,7 @@ class IPCDashboard {
             return;
         }
         
-        if (!this.methods[method].active) {
+        if (!this.methods[method]?.active) {
             this.logMessage(`${this.methods[method].name} is not active`, 'error');
             return;
         }
@@ -108,39 +128,80 @@ class IPCDashboard {
     sendIPCMessage(method, message) {
         const time = new Date().toLocaleTimeString();
         this.logMessage(`[${time}] Sent via ${this.methods[method].name}: ${message}`, 'sent');
-        
-        // Simula resposta do servidor - em produção viria do backend real
-        setTimeout(() => {
-            const response = this.createResponse(method, message);
-            this.logMessage(`[${time}] Received via ${this.methods[method].name}: ${response}`, 'received');
-        }, 300 + Math.random() * 800);
+        fetch(`${this.baseURL}/ipc/send`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mechanism: method, message })
+        })
+           .then(r => r.json().catch(() => ({})))
+           .then(() => {
+               this.logMessage(`[${time}] Backend acknowledged ${this.methods[method].name}`, 'received');
+               this.refreshDetails(method);
+           })
+           .catch(() => this.logMessage(`Send failed on ${method}`, 'error'));
     }
 
-    // Gera uma resposta simulada para demonstração - em produção viria do servidor
-    createResponse(method, original) {
-        const responses = [
-            `Echo: ${original}`,
-            `Processed: ${original.toUpperCase()}`,
-            `Response from ${method}: Message received`,
-            `Acknowledgment: ${original.length} characters processed`
-        ];
-        return responses[Math.floor(Math.random() * responses.length)];
+    // Atualiza status e detalhes do backend
+    refreshAll() {
+        this.fetchStatus().then(() => {
+            Object.keys(this.methods).forEach(m => this.refreshDetails(m));
+        });
     }
 
-    // Simula o processo de conexão com delay realista
-    connectMethod(method) {
-        setTimeout(() => {
-            this.logMessage(`${this.methods[method].name} connection established`, 'received');
-        }, 800);
+    fetchStatus() {
+        return fetch(`${this.baseURL}/ipc/status`, { cache: 'no-store' })
+            .then(r => r.json())
+            .then(status => {
+                if (!status || !Array.isArray(status.mechanisms)) return;
+                status.mechanisms.forEach(mech => {
+                    const method = mech.name; // 'pipes' | 'sockets' | 'shared_memory'
+                    if (this.methods[method] !== undefined) {
+                        this.methods[method].active = !!mech.is_active;
+                        const card = document.querySelector(`.ipc-card[data-mech="${method}"]`);
+                        if (card) this.updateCard(card, !!mech.is_active);
+                    }
+                });
+            })
+            .catch(() => {});
     }
 
-    // Descobre qual método IPC baseado no cartão que foi clicado
-    getMethod(card) {
-        const title = card.querySelector('h3').textContent;
-        if (title.includes('Pipes')) return 'pipe';
-        if (title.includes('Sockets')) return 'socket';  
-        if (title.includes('Memory')) return 'shmem';
-        return null;
+    refreshDetails(method) {
+        fetch(`${this.baseURL}/ipc/detail/${method}`, { cache: 'no-store' })
+            .then(r => r.json())
+            .then(detail => this.updateDetailsUI(method, detail))
+            .catch(() => {});
+    }
+
+    updateDetailsUI(method, detail) {
+        const card = document.querySelector(`.ipc-card[data-mech="${method}"]`);
+        if (!card || !detail) return;
+        const op = detail.last_operation || {};
+
+        const msgEl = card.querySelector('.detail-message');
+        const bytesEl = card.querySelector('.detail-bytes');
+        const timeEl = card.querySelector('.detail-time');
+        const pidsEl = card.querySelector('.detail-pids');
+        const syncEl = card.querySelector('.detail-sync');
+        const lastmodEl = card.querySelector('.detail-lastmod');
+
+        if (method === 'shared_memory') {
+            if (msgEl) msgEl.textContent = (op?.data?.content ?? op?.content ?? '—');
+            if (bytesEl) bytesEl.textContent = (op?.data?.size ?? op?.size ?? 0);
+            if (timeEl) {
+                const t = op?.time_ms ?? 0;
+                timeEl.textContent = typeof t === 'number' ? t.toFixed(3) : t;
+            }
+            if (syncEl) syncEl.textContent = (op?.data?.sync_state ?? op?.sync_state ?? '—');
+            if (lastmodEl) lastmodEl.textContent = (op?.data?.last_modified ?? op?.last_modified ?? '—');
+        } else {
+            if (msgEl) msgEl.textContent = op?.message ?? '—';
+            if (bytesEl) bytesEl.textContent = op?.bytes ?? 0;
+            if (timeEl) {
+                const t = op?.time_ms ?? 0;
+                timeEl.textContent = typeof t === 'number' ? t.toFixed(3) : t;
+            }
+            if (pidsEl) pidsEl.textContent = `${op?.sender_pid ?? '—'} → ${op?.receiver_pid ?? '—'}`;
+        }
     }
 
     // Atualiza visualmente o status do cartão (ativo/inativo)

@@ -21,27 +21,46 @@
         
         <!-- Cartões dos Mecanismos IPC -->
         <div class="ipc-section">
-            <div class="ipc-card">
+            <div class="ipc-card" data-mech="pipes">
                 <h3>Anonymous Pipes</h3>
                 <div class="status inactive">Offline</div>
+                <div class="details">
+                    <div class="row"><strong>Última mensagem:</strong> <span class="detail-message">—</span></div>
+                    <div class="row"><strong>Bytes:</strong> <span class="detail-bytes">0</span></div>
+                    <div class="row"><strong>Tempo (ms):</strong> <span class="detail-time">0</span></div>
+                    <div class="row"><strong>PID Pai→Filho:</strong> <span class="detail-pids">—</span></div>
+                </div>
                 <div class="controls">
                     <button class="btn-primary">Start</button>
                     <button class="btn-danger">Stop</button>
                 </div>
             </div>
             
-            <div class="ipc-card">
+            <div class="ipc-card" data-mech="sockets">
                 <h3>Local Sockets</h3>
                 <div class="status inactive">Offline</div>
+                <div class="details">
+                    <div class="row"><strong>Última mensagem:</strong> <span class="detail-message">—</span></div>
+                    <div class="row"><strong>Bytes:</strong> <span class="detail-bytes">0</span></div>
+                    <div class="row"><strong>Tempo (ms):</strong> <span class="detail-time">0</span></div>
+                    <div class="row"><strong>PIDs (extremos):</strong> <span class="detail-pids">— ↔ —</span></div>
+                </div>
                 <div class="controls">
                     <button class="btn-primary">Start</button>
                     <button class="btn-danger">Stop</button>
                 </div>
             </div>
             
-            <div class="ipc-card">
+            <div class="ipc-card" data-mech="shared_memory">
                 <h3>Shared Memory</h3>
                 <div class="status inactive">Offline</div>
+                <div class="details">
+                    <div class="row"><strong>Conteúdo:</strong> <span class="detail-message">—</span></div>
+                    <div class="row"><strong>Tamanho (bytes):</strong> <span class="detail-bytes">0</span></div>
+                    <div class="row"><strong>Tempo (ms):</strong> <span class="detail-time">0</span></div>
+                    <div class="row"><strong>Sync:</strong> <span class="detail-sync">—</span></div>
+                    <div class="row"><strong>Última modificação:</strong> <span class="detail-lastmod">—</span></div>
+                </div>
                 <div class="controls">
                     <button class="btn-primary">Start</button>
                     <button class="btn-danger">Stop</button>

@@ -95,6 +95,7 @@ public:
     // Interface pro servidor HTTP
     std::string executeCommand(const IPCCommand& command);  // Executa comando e retorna JSON
     std::string getStatusJSON() const;           // Status em formato JSON
+    std::string getMechanismDetailJSON(IPCMechanism mechanism) const; // Última operação + status
     void printStatus() const;                    // Imprime status no stdout
     
     // Gerenciamento de processos

@@ -103,6 +103,7 @@ private:
     HTTPResponse handleIPCStop(const HTTPRequest& request);
     HTTPResponse handleIPCSend(const HTTPRequest& request);
     HTTPResponse handleIPCLogs(const HTTPRequest& request);
+    HTTPResponse handleIPCDetail(const HTTPRequest& request);
     
     // Handlers gerais
     HTTPResponse handleNotFound(const HTTPRequest& request);
