@@ -10,6 +10,7 @@
 #include <chrono>
 #include <sstream>
 #include <iomanip>
+#include <thread>
 
 namespace ipc_project {
 
@@ -96,6 +97,9 @@ bool PipeManager::createPipe() {
         last_operation_.receiver_pid = getpid(); // Nosso PID
         
         logger_.info("Child process created", "PIPE_CHILD");
+        
+        // Loop para manter o processo filho rodando e esperando mensagens
+        runChildLoop();
     } else {
         // estamos no processo pai - so manda mensagens
         is_parent_ = true;
@@ -279,6 +283,52 @@ void PipeManager::updateOperation(const std::string& msg, size_t bytes, const st
     last_operation_.status = status;
     // obs: time_ms vai ser definido pela funcao que chama quando necessario
     // tentei fazer automatico mas ficou complicado
+}
+
+// Loop principal do processo filho para receber mensagens
+void PipeManager::runChildLoop() {
+    logger_.info("Iniciando loop do processo filho", "PIPES");
+    
+    // Loop infinito aguardando mensagens do processo pai
+    while (true) {
+        char buf[1024];
+        ssize_t bytes_read = read(pipe_fd_[0], buf, sizeof(buf) - 1);
+        
+        if (bytes_read == -1) {
+            logger_.error("Erro na leitura do pipe: " + std::string(strerror(errno)), "PIPE_CHILD");
+            break;
+        }
+        
+        if (bytes_read == 0) {
+            // Processo pai fechou o pipe
+            logger_.info("EOF recebido - processo pai fechou o pipe", "PIPE_CHILD");
+            break;
+        }
+        
+        buf[bytes_read] = '\0';
+        std::string message(buf);
+        
+        // Remove newline se existir
+        if (!message.empty() && message.back() == '\n') {
+            message.pop_back();
+        }
+        
+        if (!message.empty()) {
+            logger_.info("Mensagem recebida: " + message, "PIPE_CHILD");
+            
+            // Atualiza operação e envia JSON
+            updateOperation(message, static_cast<size_t>(bytes_read), "received");
+            printJSON();
+        }
+    }
+    
+    logger_.info("Fechando pipe do processo filho", "PIPE_CHILD");
+    if (pipe_fd_[0] != -1) {
+        close(pipe_fd_[0]);
+    }
+    
+    // Processo filho termina aqui
+    exit(0);
 }
 
 } // namespace ipc_project

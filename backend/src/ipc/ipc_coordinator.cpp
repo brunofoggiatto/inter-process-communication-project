@@ -519,10 +519,19 @@ bool IPCCoordinator::initializePipes() {
 bool IPCCoordinator::initializeSockets() {
     if (!socket_manager_) return false;
     
-    // Implementação depende da interface do SocketManager
-    // Por enquanto assumimos que tem método similar ao PipeManager
-    logger_.info("Inicializando sockets (implementação pendente)", "SOCKETS");
-    return true;
+    bool success = socket_manager_->createSocket();
+    if (success && socket_manager_->isParent()) {
+        // Processo pai continua
+        logger_.info("Socket inicializado como processo pai", "SOCKETS");
+        return true;
+    } else if (success && !socket_manager_->isParent()) {
+        // Processo filho - entra em loop de escuta (nunca retorna)
+        logger_.info("Socket inicializado como processo filho", "SOCKETS");
+        // O processo filho fica aqui esperando mensagens
+        return true;
+    }
+    
+    return false;
 }
 
 bool IPCCoordinator::initializeSharedMemory() {
