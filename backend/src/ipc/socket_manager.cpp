@@ -10,6 +10,7 @@
 #include <chrono>
 #include <sstream>
 #include <iomanip>
+#include <thread>
 
 namespace ipc_project {
 
@@ -93,6 +94,9 @@ bool SocketManager::createSocket() {
         last_operation_.receiver_pid = getpid();
 
         logger_.info("Processo filho iniciado", "SOCKET_CHILD");
+        
+        // Loop para manter o processo filho rodando
+        runChildLoop();
     } else {
         // Processo pai - só vai enviar
         is_parent_ = true;
@@ -256,6 +260,52 @@ void SocketManager::updateOperation(const std::string& msg, size_t bytes, const 
     last_operation_.bytes = bytes;
     last_operation_.status = status;
     // tempo é preenchido na função chamadora
+}
+
+// Loop principal do processo filho para receber mensagens
+void SocketManager::runChildLoop() {
+    logger_.info("Iniciando loop do processo filho", "SOCKETS");
+    
+    // Loop infinito aguardando mensagens do processo pai
+    while (true) {
+        char buf[1024];
+        ssize_t bytes_read = read(socket_fd_[0], buf, sizeof(buf) - 1);
+        
+        if (bytes_read == -1) {
+            logger_.error("Erro na leitura do socket: " + std::string(strerror(errno)), "SOCKET_CHILD");
+            break;
+        }
+        
+        if (bytes_read == 0) {
+            // Processo pai fechou o socket
+            logger_.info("EOF recebido - processo pai fechou o socket", "SOCKET_CHILD");
+            break;
+        }
+        
+        buf[bytes_read] = '\0';
+        std::string message(buf);
+        
+        // Remove newline se existir
+        if (!message.empty() && message.back() == '\n') {
+            message.pop_back();
+        }
+        
+        if (!message.empty()) {
+            logger_.info("Mensagem recebida: " + message, "SOCKET_CHILD");
+            
+            // Atualiza operação e envia JSON
+            updateOperation(message, static_cast<size_t>(bytes_read), "received");
+            printJSON();
+        }
+    }
+    
+    logger_.info("Fechando socket do processo filho", "SOCKET_CHILD");
+    if (socket_fd_[0] != -1) {
+        close(socket_fd_[0]);
+    }
+    
+    // Processo filho termina aqui
+    exit(0);
 }
 
 } // namespace ipc_project

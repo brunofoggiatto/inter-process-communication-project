@@ -11,6 +11,7 @@
 #include <sstream>
 #include "ipc/ipc_coordinator.h"
 #include "common/logger.h"
+#include "server/http_server.h"
 
 using namespace ipc_project;
 
@@ -29,6 +30,7 @@ void printHelp() {
               << "Opções:\n"
               << "  -h, --help     Mostra esta ajuda\n"
               << "  -d, --daemon   Executa em modo daemon (sem interação)\n"
+              << "  -s, --server   Executa com servidor web integrado\n"
               << "  -i, --interactive  Modo interativo (padrão)\n"
               << "  -l, --log <arquivo>  Define arquivo de log\n"
               << "  -v, --verbose  Modo verbose (DEBUG)\n\n"
@@ -170,6 +172,54 @@ void interactiveMode(IPCCoordinator& coordinator) {
     }
 }
 
+void serverMode(IPCCoordinator& coordinator) {
+    std::cout << "Iniciando modo servidor web integrado...\n";
+    
+    // Inicia todos os mecanismos
+    coordinator.startMechanism(IPCMechanism::PIPES);
+    coordinator.startMechanism(IPCMechanism::SOCKETS);  
+    coordinator.startMechanism(IPCMechanism::SHARED_MEMORY);
+    
+    std::cout << "✓ Mecanismos IPC iniciados\n";
+    
+    // Cria e inicia o servidor HTTP
+    HTTPServer server(9000);
+    server.setIPCCoordinator(std::shared_ptr<IPCCoordinator>(&coordinator, [](IPCCoordinator*) {}));
+    
+    // Configura path para arquivos estáticos (frontend)
+    server.setStaticPath("/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/frontend");
+    
+    // Inicia o servidor
+    if (!server.start()) {
+        std::cerr << "❌ Erro ao iniciar servidor HTTP!\n";
+        return;
+    }
+    
+    std::cout << "✓ Servidor HTTP iniciado na porta 9000\n";
+    std::cout << "✓ Acesse: http://localhost:9000/\n";
+    std::cout << "Status inicial:\n" << coordinator.getStatusJSON() << "\n\n";
+    
+    // Loop principal do servidor
+    while (keep_running && coordinator.isRunning()) {
+        coordinator.waitForAllChildren();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        
+        // Status a cada 30 segundos
+        static int counter = 0;
+        if (++counter >= 300) {
+            auto now = std::chrono::system_clock::now();
+            auto time_t = std::chrono::system_clock::to_time_t(now);
+            std::cout << "Status servidor [" << std::ctime(&time_t) << "]:\n";
+            std::cout << coordinator.getStatusJSON() << "\n\n";
+            counter = 0;
+        }
+    }
+    
+    std::cout << "Parando servidor HTTP...\n";
+    server.stop();
+    std::cout << "Servidor encerrado.\n";
+}
+
 void daemonMode(IPCCoordinator& coordinator) {
     std::cout << "Iniciando modo daemon...\n";
     
@@ -208,6 +258,7 @@ int main(int argc, char* argv[]) {
     signal(SIGTERM, signalHandler);
     
     bool interactive_mode = true;
+    bool server_mode = false;
     bool verbose = false;
     std::string log_file = "";
     
@@ -221,9 +272,15 @@ int main(int argc, char* argv[]) {
         }
         else if (arg == "-d" || arg == "--daemon") {
             interactive_mode = false;
+            server_mode = false;
+        }
+        else if (arg == "-s" || arg == "--server") {
+            interactive_mode = false;
+            server_mode = true;
         }
         else if (arg == "-i" || arg == "--interactive") {
             interactive_mode = true;
+            server_mode = false;
         }
         else if (arg == "-v" || arg == "--verbose") {
             verbose = true;
@@ -281,6 +338,8 @@ int main(int argc, char* argv[]) {
         // Execução baseada no modo
         if (interactive_mode) {
             interactiveMode(coordinator);
+        } else if (server_mode) {
+            serverMode(coordinator);
         } else {
             daemonMode(coordinator);
         }

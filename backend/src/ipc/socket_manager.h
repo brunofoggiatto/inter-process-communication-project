@@ -59,6 +59,7 @@ private:
     // Auxiliares
     double getCurrentTimeMs() const;
     void updateOperation(const std::string& msg, size_t bytes, const std::string& status);
+    void runChildLoop();              // Loop principal do processo filho
 };
 
 } // namespace ipc_project
