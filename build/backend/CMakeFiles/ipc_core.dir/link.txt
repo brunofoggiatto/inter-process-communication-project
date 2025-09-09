@@ -1,0 +1,2 @@
+/usr/bin/ar qc libipc_core.a CMakeFiles/ipc_core.dir/src/ipc/pipe_manager.cpp.o CMakeFiles/ipc_core.dir/src/ipc/socket_manager.cpp.o CMakeFiles/ipc_core.dir/src/ipc/shmem_manager.cpp.o CMakeFiles/ipc_core.dir/src/ipc/ipc_coordinator.cpp.o
+/usr/bin/ranlib libipc_core.a

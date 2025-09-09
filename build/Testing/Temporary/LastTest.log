@@ -1,0 +1,2006 @@
+Start testing: Sep 09 11:58 -03
+----------------------------------------------------------
+1/41 Testing: SharedMemoryManagerTest.CreateAndDestroy
+1/41 Test: SharedMemoryManagerTest.CreateAndDestroy
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.CreateAndDestroy" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.CreateAndDestroy" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.CreateAndDestroy
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.CreateAndDestroy
+[INFO] 09/09/2025 11:58:09.483 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.483 [SHMEM] Criando memória compartilhada com chave: 12866
+[INFO] 09/09/2025 11:58:09.483 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.483 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.483 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.483 [SHMEM] Semáforos removidos
+[INFO] 09/09/2025 11:58:09.483 [SHMEM] Memória compartilhada removida
+[INFO] 09/09/2025 11:58:09.484 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.CreateAndDestroy (0 ms)
+[----------] 1 test from SharedMemoryManagerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.CreateAndDestroy" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.CreateAndDestroy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/41 Testing: SharedMemoryManagerTest.WriteAndRead
+2/41 Test: SharedMemoryManagerTest.WriteAndRead
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.WriteAndRead" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.WriteAndRead" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.WriteAndRead
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.WriteAndRead
+[INFO] 09/09/2025 11:58:09.497 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.497 [SHMEM] Criando memória compartilhada com chave: 17170
+[INFO] 09/09/2025 11:58:09.497 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.497 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.498 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.498 [SHMEM] Escrito na memória: Teste de mensagem na memória compartilhada
+[INFO] 09/09/2025 11:58:09.498 [SHMEM] Lido da memória: Teste de mensagem na memória compartilhada
+[INFO] 09/09/2025 11:58:09.498 [SHMEM] Semáforos removidos
+[INFO] 09/09/2025 11:58:09.498 [SHMEM] Memória compartilhada removida
+[INFO] 09/09/2025 11:58:09.498 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.WriteAndRead (1 ms)
+[----------] 1 test from SharedMemoryManagerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.WriteAndRead" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.WriteAndRead" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/41 Testing: SharedMemoryManagerTest.BasicLocking
+3/41 Test: SharedMemoryManagerTest.BasicLocking
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.BasicLocking" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.BasicLocking" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.BasicLocking
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.BasicLocking
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] Criando memória compartilhada com chave: 9875
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] Semáforos removidos
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] Memória compartilhada removida
+[INFO] 09/09/2025 11:58:09.510 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.BasicLocking (0 ms)
+[----------] 1 test from SharedMemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.BasicLocking" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.BasicLocking" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/41 Testing: SharedMemoryManagerTest.JSONOperations
+4/41 Test: SharedMemoryManagerTest.JSONOperations
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.JSONOperations" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.JSONOperations" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.JSONOperations
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.JSONOperations
+[INFO] 09/09/2025 11:58:09.523 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.523 [SHMEM] Criando memória compartilhada com chave: 13289
+[INFO] 09/09/2025 11:58:09.524 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.524 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.524 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.524 [SHMEM] Escrito na memória: Test JSON
+[INFO] 09/09/2025 11:58:09.524 [SHMEM] Semáforos removidos
+[INFO] 09/09/2025 11:58:09.524 [SHMEM] Memória compartilhada removida
+[INFO] 09/09/2025 11:58:09.524 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.JSONOperations (0 ms)
+[----------] 1 test from SharedMemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.JSONOperations" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.JSONOperations" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/41 Testing: SharedMemoryManagerTest.MultipleOperations
+5/41 Test: SharedMemoryManagerTest.MultipleOperations
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.MultipleOperations" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.MultipleOperations" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.MultipleOperations
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.MultipleOperations
+[INFO] 09/09/2025 11:58:09.535 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Criando memória compartilhada com chave: 15462
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Escrito na memória: Primeira mensagem
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Lido da memória: Primeira mensagem
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Escrito na memória: Segunda mensagem
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Lido da memória: Segunda mensagem
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Escrito na memória: Terceira mensagem
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Lido da memória: Terceira mensagem
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Semáforos removidos
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] Memória compartilhada removida
+[INFO] 09/09/2025 11:58:09.536 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.MultipleOperations (1 ms)
+[----------] 1 test from SharedMemoryManagerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.MultipleOperations" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.MultipleOperations" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/41 Testing: SharedMemoryManagerTest.StatusMonitoring
+6/41 Test: SharedMemoryManagerTest.StatusMonitoring
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.StatusMonitoring" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.StatusMonitoring" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.StatusMonitoring
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.StatusMonitoring
+[INFO] 09/09/2025 11:58:09.549 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.549 [SHMEM] Criando memória compartilhada com chave: 19177
+[INFO] 09/09/2025 11:58:09.549 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.549 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.550 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.550 [SHMEM] Semáforos removidos
+[INFO] 09/09/2025 11:58:09.550 [SHMEM] Memória compartilhada removida
+[INFO] 09/09/2025 11:58:09.550 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.StatusMonitoring (0 ms)
+[----------] 1 test from SharedMemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.StatusMonitoring" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.StatusMonitoring" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/41 Testing: SharedMemoryManagerTest.ErrorHandling
+7/41 Test: SharedMemoryManagerTest.ErrorHandling
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.ErrorHandling" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.ErrorHandling" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.ErrorHandling
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.ErrorHandling
+[INFO] 09/09/2025 11:58:09.565 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.565 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.ErrorHandling (0 ms)
+[----------] 1 test from SharedMemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.ErrorHandling" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.ErrorHandling" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/41 Testing: SharedMemoryManagerTest.ProcessManagement
+8/41 Test: SharedMemoryManagerTest.ProcessManagement
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=SharedMemoryManagerTest.ProcessManagement" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"SharedMemoryManagerTest.ProcessManagement" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SharedMemoryManagerTest.ProcessManagement
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SharedMemoryManagerTest
+[ RUN      ] SharedMemoryManagerTest.ProcessManagement
+[INFO] 09/09/2025 11:58:09.582 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.582 [SHMEM] Criando memória compartilhada com chave: 12338
+[INFO] 09/09/2025 11:58:09.583 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.583 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.583 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.583 [SHMEM] Semáforos removidos
+[INFO] 09/09/2025 11:58:09.583 [SHMEM] Memória compartilhada removida
+[INFO] 09/09/2025 11:58:09.584 [SHMEM] SharedMemoryManager destruído
+[       OK ] SharedMemoryManagerTest.ProcessManagement (1 ms)
+[----------] 1 test from SharedMemoryManagerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"SharedMemoryManagerTest.ProcessManagement" end time: Sep 09 11:58 -03
+"SharedMemoryManagerTest.ProcessManagement" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/41 Testing: IPCCoordinatorTest.InitializationAndShutdown
+9/41 Test: IPCCoordinatorTest.InitializationAndShutdown
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.InitializationAndShutdown" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.InitializationAndShutdown" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.InitializationAndShutdown
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.InitializationAndShutdown
+[INFO] 09/09/2025 11:58:09.607 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:09.607 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:09.607 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:09.607 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:09.607 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:09.607 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.607 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:09.608 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:09.608 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:09.608 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.608 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:09.608 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:09.608 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:09.609 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.609 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.609 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:09.609 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:09.609 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.InitializationAndShutdown (2 ms)
+[----------] 1 test from IPCCoordinatorTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.InitializationAndShutdown" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.InitializationAndShutdown" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/41 Testing: IPCCoordinatorTest.MechanismControl
+10/41 Test: IPCCoordinatorTest.MechanismControl
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.MechanismControl" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.MechanismControl" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.MechanismControl
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.MechanismControl
+[INFO] 09/09/2025 11:58:09.625 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:09.625 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:09.625 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:09.625 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:09.626 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:09.626 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.626 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:09.626 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:09.626 [COORDINATOR] Iniciando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.626 [PIPE] Creating anonymous pipe
+[INFO] 09/09/2025 11:58:09.627 [PIPE] Parent process - child PID: 9449
+[INFO] 09/09/2025 11:58:09.627 [PIPES] Pipe inicializado como processo pai
+[INFO] 09/09/2025 11:58:09.627 [COORDINATOR] pipes iniciado com sucesso
+[INFO] 09/09/2025 11:58:09.627 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.627 [SHMEM] Criando memória compartilhada com chave: 17221
+[INFO] 09/09/2025 11:58:09.627 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.627 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.628 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.628 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:09.628 [PIPE_CHILD] Child process created
+[INFO] 09/09/2025 11:58:09.628 [PIPE_CHILD] Starting child listen loop
+[INFO] 09/09/2025 11:58:09.628 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:09.629 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:09.630 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.630 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.630 [PIPE] Closing pipe
+[INFO] 09/09/2025 11:58:09.630 [PIPE_CHILD] Pipe became invalid, exiting child loop
+[INFO] 09/09/2025 11:58:09.630 [PIPE_CHILD] Child process exiting
+[INFO] 09/09/2025 11:58:09.631 [PIPE] Child process terminated with code: 0
+[INFO] 09/09/2025 11:58:09.631 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:09.632 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:09.632 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.MechanismControl (6 ms)
+[----------] 1 test from IPCCoordinatorTest (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.MechanismControl" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.MechanismControl" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/41 Testing: IPCCoordinatorTest.MechanismStatus
+11/41 Test: IPCCoordinatorTest.MechanismStatus
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.MechanismStatus" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.MechanismStatus" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.MechanismStatus
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.MechanismStatus
+[INFO] 09/09/2025 11:58:09.648 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:09.648 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:09.648 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:09.648 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:09.648 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:09.648 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.648 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:09.648 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:09.648 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.648 [SHMEM] Criando memória compartilhada com chave: 18107
+[INFO] 09/09/2025 11:58:09.648 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.648 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.648 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.649 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.649 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:09.649 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.MechanismStatus (2 ms)
+[----------] 1 test from IPCCoordinatorTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.MechanismStatus" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.MechanismStatus" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/41 Testing: IPCCoordinatorTest.JSONStatus
+12/41 Test: IPCCoordinatorTest.JSONStatus
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.JSONStatus" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.JSONStatus" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.JSONStatus
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.JSONStatus
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:09.665 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:09.665 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:09.665 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.665 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:09.666 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:09.666 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:09.666 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.666 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.666 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:09.666 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:09.666 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.JSONStatus (1 ms)
+[----------] 1 test from IPCCoordinatorTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.JSONStatus" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.JSONStatus" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/41 Testing: IPCCoordinatorTest.CommandExecution
+13/41 Test: IPCCoordinatorTest.CommandExecution
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.CommandExecution" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.CommandExecution" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.CommandExecution
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.CommandExecution
+[INFO] 09/09/2025 11:58:09.680 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:09.680 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:09.681 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:09.681 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:09.681 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:09.681 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.681 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:09.681 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:09.681 [COORDINATOR] Executando comando: start no shared_memory
+[INFO] 09/09/2025 11:58:09.681 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.681 [SHMEM] Criando memória compartilhada com chave: 11062
+[INFO] 09/09/2025 11:58:09.681 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.681 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.681 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.682 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] Executando comando: status no pipes
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.682 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.683 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:09.683 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:09.683 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.CommandExecution (2 ms)
+[----------] 1 test from IPCCoordinatorTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.CommandExecution" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.CommandExecution" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/41 Testing: IPCCoordinatorTest.MessageSending
+14/41 Test: IPCCoordinatorTest.MessageSending
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.MessageSending" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.MessageSending" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.MessageSending
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.MessageSending
+[INFO] 09/09/2025 11:58:09.696 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:09.696 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:09.696 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:09.696 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:09.696 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:09.696 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.696 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:09.696 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:09.696 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.696 [SHMEM] Criando memória compartilhada com chave: 16207
+[INFO] 09/09/2025 11:58:09.696 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.696 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.697 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.697 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:09.697 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:09.697 [SHMEM] Escrito na memória: Teste de mensagem do coordinator
+[WARNING] 09/09/2025 11:58:09.697 [COORDINATOR] Tentativa de enviar mensagem em mecanismo inativo: pipes
+[INFO] 09/09/2025 11:58:09.697 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:09.697 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:09.697 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:09.697 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:09.697 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:09.697 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.698 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.698 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:09.698 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:09.698 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.MessageSending (2 ms)
+[----------] 1 test from IPCCoordinatorTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.MessageSending" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.MessageSending" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/41 Testing: IPCCoordinatorTest.MechanismRestart
+15/41 Test: IPCCoordinatorTest.MechanismRestart
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.MechanismRestart" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.MechanismRestart" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.MechanismRestart
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.MechanismRestart
+[INFO] 09/09/2025 11:58:09.711 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:09.711 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:09.711 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:09.711 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:09.711 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:09.711 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:09.711 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:09.711 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:09.711 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.711 [SHMEM] Criando memória compartilhada com chave: 11307
+[INFO] 09/09/2025 11:58:09.711 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:09.712 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:09.712 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:09.712 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:09.712 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:09.712 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.712 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:09.712 [COORDINATOR] Reiniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.712 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:09.712 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:10.212 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:10.213 [SHMEM] Criando memória compartilhada com chave: 12606
+[INFO] 09/09/2025 11:58:10.213 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:10.213 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:10.213 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:10.213 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:10.213 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:10.213 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:10.213 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:10.213 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:10.214 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:10.214 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:10.214 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:10.214 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:10.214 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:10.214 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:10.214 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.MechanismRestart (503 ms)
+[----------] 1 test from IPCCoordinatorTest (503 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (503 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.52 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.MechanismRestart" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.MechanismRestart" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/41 Testing: IPCCoordinatorTest.LogRetrieval
+16/41 Test: IPCCoordinatorTest.LogRetrieval
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.LogRetrieval" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.LogRetrieval" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.LogRetrieval
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.LogRetrieval
+[INFO] 09/09/2025 11:58:10.228 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:10.228 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:10.228 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:10.228 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:10.228 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:10.228 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:10.228 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:10.228 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:10.228 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:10.228 [SHMEM] Criando memória compartilhada com chave: 17892
+[INFO] 09/09/2025 11:58:10.228 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:10.228 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:10.228 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:10.228 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:10.228 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:10.229 [SHMEM] Escrito na memória: test message
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:10.229 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:10.229 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.LogRetrieval (1 ms)
+[----------] 1 test from IPCCoordinatorTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.LogRetrieval" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.LogRetrieval" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/41 Testing: IPCCoordinatorTest.StringConversion
+17/41 Test: IPCCoordinatorTest.StringConversion
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.StringConversion" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.StringConversion" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.StringConversion
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.StringConversion
+[INFO] 09/09/2025 11:58:10.241 [COORDINATOR] IPCCoordinator inicializado
+[       OK ] IPCCoordinatorTest.StringConversion (0 ms)
+[----------] 1 test from IPCCoordinatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.StringConversion" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.StringConversion" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/41 Testing: IPCCoordinatorTest.InvalidCommand
+18/41 Test: IPCCoordinatorTest.InvalidCommand
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.InvalidCommand" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.InvalidCommand" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.InvalidCommand
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.InvalidCommand
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:10.255 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:10.255 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:10.255 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Executando comando: invalid_action no pipes
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:10.255 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:10.256 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:10.256 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:10.256 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:10.256 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:10.256 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:10.256 [COORDINATOR] Coordenador desligado
+[       OK ] IPCCoordinatorTest.InvalidCommand (1 ms)
+[----------] 1 test from IPCCoordinatorTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.InvalidCommand" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.InvalidCommand" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/41 Testing: IPCCoordinatorTest.JSONCommandParsing
+19/41 Test: IPCCoordinatorTest.JSONCommandParsing
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.JSONCommandParsing" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.JSONCommandParsing" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.JSONCommandParsing
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.JSONCommandParsing
+[INFO] 09/09/2025 11:58:10.272 [COORDINATOR] IPCCoordinator inicializado
+[       OK ] IPCCoordinatorTest.JSONCommandParsing (0 ms)
+[----------] 1 test from IPCCoordinatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.JSONCommandParsing" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.JSONCommandParsing" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/41 Testing: IPCCoordinatorTest.TimestampGeneration
+20/41 Test: IPCCoordinatorTest.TimestampGeneration
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=IPCCoordinatorTest.TimestampGeneration" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"IPCCoordinatorTest.TimestampGeneration" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = IPCCoordinatorTest.TimestampGeneration
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from IPCCoordinatorTest
+[ RUN      ] IPCCoordinatorTest.TimestampGeneration
+[INFO] 09/09/2025 11:58:10.290 [COORDINATOR] IPCCoordinator inicializado
+[       OK ] IPCCoordinatorTest.TimestampGeneration (0 ms)
+[----------] 1 test from IPCCoordinatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"IPCCoordinatorTest.TimestampGeneration" end time: Sep 09 11:58 -03
+"IPCCoordinatorTest.TimestampGeneration" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/41 Testing: HTTPServerTest.ServerInitialization
+21/41 Test: HTTPServerTest.ServerInitialization
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.ServerInitialization" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.ServerInitialization" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.ServerInitialization
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.ServerInitialization
+[INFO] 09/09/2025 11:58:10.304 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:10.304 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:10.304 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:10.304 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:10.304 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:10.304 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:10.304 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:10.304 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:10.305 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:10.305 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.ServerInitialization (1 ms)
+[----------] 1 test from HTTPServerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.ServerInitialization" end time: Sep 09 11:58 -03
+"HTTPServerTest.ServerInitialization" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/41 Testing: HTTPServerTest.StartAndStop
+22/41 Test: HTTPServerTest.StartAndStop
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.StartAndStop" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.StartAndStop" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.StartAndStop
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.StartAndStop
+[INFO] 09/09/2025 11:58:10.324 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:10.324 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:10.324 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:10.325 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:10.325 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:10.325 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:10.325 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:10.325 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:10.326 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:10.326 [HTTP] Servidor HTTP iniciado na porta 9001
+[INFO] 09/09/2025 11:58:10.427 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:11.327 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:11.327 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:11.327 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:11.327 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:11.327 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:11.327 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:11.328 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:11.328 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:11.328 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:11.328 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:11.328 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.StartAndStop (1003 ms)
+[----------] 1 test from HTTPServerTest (1003 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1003 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.02 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.StartAndStop" end time: Sep 09 11:58 -03
+"HTTPServerTest.StartAndStop" time elapsed: 00:00:01
+----------------------------------------------------------
+
+23/41 Testing: HTTPServerTest.RequestCountingAndLogs
+23/41 Test: HTTPServerTest.RequestCountingAndLogs
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.RequestCountingAndLogs" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.RequestCountingAndLogs" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.RequestCountingAndLogs
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.RequestCountingAndLogs
+[INFO] 09/09/2025 11:58:11.339 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:11.339 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:11.339 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:11.339 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:11.339 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:11.339 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:11.339 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:11.340 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:11.340 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:11.340 [HTTP] Servidor HTTP iniciado na porta 9001
+[INFO] 09/09/2025 11:58:11.390 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:12.341 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:12.341 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.341 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.341 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.341 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.341 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.342 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.342 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.342 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.342 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.342 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.RequestCountingAndLogs (1002 ms)
+[----------] 1 test from HTTPServerTest (1002 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1002 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.01 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.RequestCountingAndLogs" end time: Sep 09 11:58 -03
+"HTTPServerTest.RequestCountingAndLogs" time elapsed: 00:00:01
+----------------------------------------------------------
+
+24/41 Testing: HTTPServerTest.HTTPRequestParsing
+24/41 Test: HTTPServerTest.HTTPRequestParsing
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.HTTPRequestParsing" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.HTTPRequestParsing" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.HTTPRequestParsing
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.HTTPRequestParsing
+[INFO] 09/09/2025 11:58:12.354 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.354 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.354 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.354 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.354 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.354 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.354 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.354 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.354 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.354 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.355 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.355 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.HTTPRequestParsing (1 ms)
+[----------] 1 test from HTTPServerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.HTTPRequestParsing" end time: Sep 09 11:58 -03
+"HTTPServerTest.HTTPRequestParsing" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/41 Testing: HTTPServerTest.HTTPStructures
+25/41 Test: HTTPServerTest.HTTPStructures
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.HTTPStructures" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.HTTPStructures" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.HTTPStructures
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.HTTPStructures
+[INFO] 09/09/2025 11:58:12.369 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.369 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.369 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.369 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.370 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.370 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.370 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.370 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.371 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.371 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.371 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.371 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.371 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.371 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.371 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.372 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.372 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.372 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.372 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.HTTPStructures (3 ms)
+[----------] 1 test from HTTPServerTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.HTTPStructures" end time: Sep 09 11:58 -03
+"HTTPServerTest.HTTPStructures" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/41 Testing: HTTPServerTest.ResponseHandlers
+26/41 Test: HTTPServerTest.ResponseHandlers
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.ResponseHandlers" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.ResponseHandlers" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.ResponseHandlers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.ResponseHandlers
+[INFO] 09/09/2025 11:58:12.387 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.387 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.387 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.387 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.387 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.388 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.388 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.388 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.388 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.388 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.388 [SHMEM] Criando memória compartilhada com chave: 17915
+[INFO] 09/09/2025 11:58:12.388 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:12.388 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:12.389 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:12.389 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:12.389 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:12.389 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.389 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.390 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.390 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.390 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.390 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.390 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.390 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.390 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.391 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.ResponseHandlers (3 ms)
+[----------] 1 test from HTTPServerTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.ResponseHandlers" end time: Sep 09 11:58 -03
+"HTTPServerTest.ResponseHandlers" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/41 Testing: HTTPServerTest.MimeTypeHandling
+27/41 Test: HTTPServerTest.MimeTypeHandling
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.MimeTypeHandling" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.MimeTypeHandling" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.MimeTypeHandling
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.MimeTypeHandling
+[INFO] 09/09/2025 11:58:12.405 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.405 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.405 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.405 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.406 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.406 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.406 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.406 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.406 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.MimeTypeHandling (1 ms)
+[----------] 1 test from HTTPServerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.MimeTypeHandling" end time: Sep 09 11:58 -03
+"HTTPServerTest.MimeTypeHandling" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/41 Testing: HTTPServerTest.BasicRouting
+28/41 Test: HTTPServerTest.BasicRouting
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.BasicRouting" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.BasicRouting" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.BasicRouting
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.BasicRouting
+[INFO] 09/09/2025 11:58:12.423 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.423 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.423 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.423 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.423 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.424 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.424 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.424 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.424 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.424 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.424 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.424 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.424 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.425 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.425 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.425 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.425 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.425 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.425 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.BasicRouting (2 ms)
+[----------] 1 test from HTTPServerTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.BasicRouting" end time: Sep 09 11:58 -03
+"HTTPServerTest.BasicRouting" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/41 Testing: HTTPServerTest.CORSConfiguration
+29/41 Test: HTTPServerTest.CORSConfiguration
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.CORSConfiguration" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.CORSConfiguration" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.CORSConfiguration
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.CORSConfiguration
+[INFO] 09/09/2025 11:58:12.440 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.441 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.441 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.441 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.441 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.442 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.442 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.442 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.442 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.442 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.442 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.442 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.442 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.443 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.443 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.443 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.443 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.443 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.443 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.CORSConfiguration (2 ms)
+[----------] 1 test from HTTPServerTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.CORSConfiguration" end time: Sep 09 11:58 -03
+"HTTPServerTest.CORSConfiguration" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/41 Testing: HTTPServerTest.IPCIntegration
+30/41 Test: HTTPServerTest.IPCIntegration
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.IPCIntegration" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.IPCIntegration" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.IPCIntegration
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.IPCIntegration
+[INFO] 09/09/2025 11:58:12.460 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.460 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.460 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.460 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.460 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.460 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.460 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.461 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.461 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.461 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.461 [SHMEM] Criando memória compartilhada com chave: 10649
+[INFO] 09/09/2025 11:58:12.461 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:12.461 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:12.461 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:12.462 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:12.462 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:12.462 [SHMEM] Escrito na memória: test message
+[INFO] 09/09/2025 11:58:12.462 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:12.462 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:12.462 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:12.462 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:12.462 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:12.463 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:12.463 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:12.463 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:12.463 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:12.463 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.IPCIntegration (3 ms)
+[----------] 1 test from HTTPServerTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.IPCIntegration" end time: Sep 09 11:58 -03
+"HTTPServerTest.IPCIntegration" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/41 Testing: HTTPServerTest.NoIPCCoordinatorError
+31/41 Test: HTTPServerTest.NoIPCCoordinatorError
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.NoIPCCoordinatorError" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.NoIPCCoordinatorError" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.NoIPCCoordinatorError
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.NoIPCCoordinatorError
+[INFO] 09/09/2025 11:58:12.478 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:12.478 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:12.478 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:12.478 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:12.478 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:12.478 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:12.478 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:12.478 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:12.479 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:12.479 [HTTP] HTTPServer criado na porta 9999
+[INFO] 09/09/2025 11:58:12.479 [HTTP] Servidor HTTP iniciado na porta 9999
+[INFO] 09/09/2025 11:58:12.530 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:13.480 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:13.480 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:13.480 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:13.480 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:13.481 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:13.481 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:13.481 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:13.481 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:13.481 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:13.481 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:13.481 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.NoIPCCoordinatorError (1003 ms)
+[----------] 1 test from HTTPServerTest (1003 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1003 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.02 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.NoIPCCoordinatorError" end time: Sep 09 11:58 -03
+"HTTPServerTest.NoIPCCoordinatorError" time elapsed: 00:00:01
+----------------------------------------------------------
+
+32/41 Testing: HTTPServerTest.ServerConfiguration
+32/41 Test: HTTPServerTest.ServerConfiguration
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/unit_tests" "--gtest_filter=HTTPServerTest.ServerConfiguration" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"HTTPServerTest.ServerConfiguration" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = HTTPServerTest.ServerConfiguration
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HTTPServerTest
+[ RUN      ] HTTPServerTest.ServerConfiguration
+[INFO] 09/09/2025 11:58:13.493 [HTTP] HTTPServer criado na porta 9001
+[INFO] 09/09/2025 11:58:13.493 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:13.493 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:13.493 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:13.493 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:13.493 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:13.493 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:13.493 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:13.493 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:13.494 [HTTP] Servidor HTTP iniciado na porta 9001
+[INFO] 09/09/2025 11:58:13.544 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:14.495 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:14.495 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:14.495 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:14.495 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:14.495 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:14.495 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:14.495 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:14.496 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:14.496 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:14.496 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:14.496 [COORDINATOR] Coordenador desligado
+[       OK ] HTTPServerTest.ServerConfiguration (1002 ms)
+[----------] 1 test from HTTPServerTest (1002 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1002 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.01 sec
+----------------------------------------------------------
+Test Passed.
+"HTTPServerTest.ServerConfiguration" end time: Sep 09 11:58 -03
+"HTTPServerTest.ServerConfiguration" time elapsed: 00:00:01
+----------------------------------------------------------
+
+33/41 Testing: FullFlowIntegrationTest.SystemInitialization
+33/41 Test: FullFlowIntegrationTest.SystemInitialization
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.SystemInitialization" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.SystemInitialization" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.SystemInitialization
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.SystemInitialization
+[INFO] 09/09/2025 11:58:14.515 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:14.515 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:14.515 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:14.515 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:14.515 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:14.515 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:14.515 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:14.515 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:14.515 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:14.516 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:14.716 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:15.517 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:15.517 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:15.517 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:15.517 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:15.517 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:15.517 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:15.517 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:15.518 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:15.518 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:15.518 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:15.518 [COORDINATOR] Coordenador desligado
+[       OK ] FullFlowIntegrationTest.SystemInitialization (1102 ms)
+[----------] 1 test from FullFlowIntegrationTest (1103 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1103 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.12 sec
+----------------------------------------------------------
+Test Passed.
+"FullFlowIntegrationTest.SystemInitialization" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.SystemInitialization" time elapsed: 00:00:01
+----------------------------------------------------------
+
+34/41 Testing: FullFlowIntegrationTest.StartMechanismFlow
+34/41 Test: FullFlowIntegrationTest.StartMechanismFlow
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.StartMechanismFlow" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.StartMechanismFlow" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.StartMechanismFlow
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.StartMechanismFlow
+[INFO] 09/09/2025 11:58:15.631 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:15.631 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:15.631 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:15.631 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:15.631 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:15.631 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:15.631 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:15.631 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:15.632 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:15.632 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:15.832 [COORDINATOR] Executando comando: start no shared_memory
+[INFO] 09/09/2025 11:58:15.832 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:15.832 [SHMEM] Criando memória compartilhada com chave: 12289
+[INFO] 09/09/2025 11:58:15.832 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:15.832 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:15.833 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:15.833 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:15.833 [COORDINATOR] shared_memory iniciado com sucesso
+/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/tests/integration/test_full_flow.cpp:89: Failure
+Expected: (full_status.total_processes) > (0), actual: 0 vs 0
+
+[INFO] 09/09/2025 11:58:15.833 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:16.633 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:16.633 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:16.633 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:16.634 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:16.634 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:16.634 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:16.634 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:16.634 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:16.634 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:16.634 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:16.634 [COORDINATOR] Coordenador desligado
+[  FAILED  ] FullFlowIntegrationTest.StartMechanismFlow (1103 ms)
+[----------] 1 test from FullFlowIntegrationTest (1103 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1103 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] FullFlowIntegrationTest.StartMechanismFlow
+
+ 1 FAILED TEST
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Failed.
+"FullFlowIntegrationTest.StartMechanismFlow" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.StartMechanismFlow" time elapsed: 00:00:01
+----------------------------------------------------------
+
+35/41 Testing: FullFlowIntegrationTest.MessageSendingFlow
+35/41 Test: FullFlowIntegrationTest.MessageSendingFlow
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.MessageSendingFlow" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.MessageSendingFlow" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.MessageSendingFlow
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.MessageSendingFlow
+[INFO] 09/09/2025 11:58:16.746 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:16.746 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:16.746 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:16.746 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:16.746 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:16.746 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:16.746 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:16.746 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:16.746 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:16.746 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:16.947 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:16.947 [SHMEM] Criando memória compartilhada com chave: 16737
+[INFO] 09/09/2025 11:58:16.947 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:16.947 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:16.947 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:16.947 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:16.947 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:17.047 [SHMEM] Escrito na memória: Teste de integração - mensagem completa
+[INFO] 09/09/2025 11:58:17.047 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:17.747 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:17.747 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:17.747 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:17.747 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:17.748 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:17.748 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:17.748 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:17.748 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:17.748 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:17.748 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:17.748 [COORDINATOR] Coordenador desligado
+[       OK ] FullFlowIntegrationTest.MessageSendingFlow (1102 ms)
+[----------] 1 test from FullFlowIntegrationTest (1102 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1103 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Passed.
+"FullFlowIntegrationTest.MessageSendingFlow" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.MessageSendingFlow" time elapsed: 00:00:01
+----------------------------------------------------------
+
+36/41 Testing: FullFlowIntegrationTest.MultipleSimultaneousMechanisms
+36/41 Test: FullFlowIntegrationTest.MultipleSimultaneousMechanisms
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.MultipleSimultaneousMechanisms" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.MultipleSimultaneousMechanisms" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.MultipleSimultaneousMechanisms
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.MultipleSimultaneousMechanisms
+[INFO] 09/09/2025 11:58:17.860 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:17.860 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:17.860 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:17.860 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:17.861 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:17.861 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:17.861 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:17.861 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:17.861 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:17.861 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:18.061 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:18.061 [SHMEM] Criando memória compartilhada com chave: 11391
+[INFO] 09/09/2025 11:58:18.061 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:18.062 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:18.062 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:18.062 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:18.062 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:18.062 [COORDINATOR] Iniciando mecanismo: pipes
+[INFO] 09/09/2025 11:58:18.062 [PIPE] Creating anonymous pipe
+[INFO] 09/09/2025 11:58:18.063 [PIPE] Parent process - child PID: 9572
+[INFO] 09/09/2025 11:58:18.063 [PIPES] Pipe inicializado como processo pai
+[INFO] 09/09/2025 11:58:18.063 [COORDINATOR] pipes iniciado com sucesso
+[INFO] 09/09/2025 11:58:18.063 [PIPE_CHILD] Child process created
+[INFO] 09/09/2025 11:58:18.063 [PIPE_CHILD] Starting child listen loop
+[INFO] 09/09/2025 11:58:18.213 [SHMEM] Escrito na memória: msg para shmem
+[INFO] 09/09/2025 11:58:18.213 [PIPE_CHILD] Pipe became invalid, exiting child loop
+[INFO] 09/09/2025 11:58:18.213 [PIPE] Sent: 'msg para pipes' (15 bytes)
+[INFO] 09/09/2025 11:58:18.214 [PIPE_CHILD] Child process exiting
+PIPE_JSON:{"message":"msg para pipes","bytes":15,"time_ms":0.115,"status":"sent","sender_pid":9570,"receiver_pid":9572,"ipc_type":"anonymous_pipe"}
+/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/tests/integration/test_full_flow.cpp:143: Failure
+Expected: (full_status.total_processes) >= (2), actual: 0 vs 2
+
+[INFO] 09/09/2025 11:58:18.214 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:18.214 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:18.215 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:18.215 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:18.215 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:18.862 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:18.862 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:18.862 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:18.862 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:18.863 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:18.863 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:18.863 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:18.863 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:18.863 [PIPE] Closing pipe
+[INFO] 09/09/2025 11:58:18.863 [PIPE] Child process terminated with code: 0
+[INFO] 09/09/2025 11:58:18.863 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:18.863 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:18.863 [COORDINATOR] Coordenador desligado
+[  FAILED  ] FullFlowIntegrationTest.MultipleSimultaneousMechanisms (1103 ms)
+[----------] 1 test from FullFlowIntegrationTest (1103 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1103 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] FullFlowIntegrationTest.MultipleSimultaneousMechanisms
+
+ 1 FAILED TEST
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Failed.
+"FullFlowIntegrationTest.MultipleSimultaneousMechanisms" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.MultipleSimultaneousMechanisms" time elapsed: 00:00:01
+----------------------------------------------------------
+
+37/41 Testing: FullFlowIntegrationTest.CompleteLifecycle
+37/41 Test: FullFlowIntegrationTest.CompleteLifecycle
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.CompleteLifecycle" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.CompleteLifecycle" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.CompleteLifecycle
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.CompleteLifecycle
+[INFO] 09/09/2025 11:58:18.974 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:18.974 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:18.974 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:18.974 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:18.974 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:18.975 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:18.975 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:18.975 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:18.975 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:18.975 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:19.175 [COORDINATOR] Executando comando: start no shared_memory
+[INFO] 09/09/2025 11:58:19.175 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:19.175 [SHMEM] Criando memória compartilhada com chave: 15389
+[INFO] 09/09/2025 11:58:19.175 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:19.176 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:19.176 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:19.176 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:19.176 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:19.276 [COORDINATOR] Executando comando: send no shared_memory
+[INFO] 09/09/2025 11:58:19.276 [SHMEM] Escrito na memória: Mensagem de teste do ciclo completo
+[INFO] 09/09/2025 11:58:19.276 [COORDINATOR] Executando comando: status no shared_memory
+[INFO] 09/09/2025 11:58:19.276 [COORDINATOR] Executando comando: stop no shared_memory
+[INFO] 09/09/2025 11:58:19.277 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:19.277 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:19.277 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:19.976 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:19.976 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:19.976 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:19.976 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:19.976 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:19.976 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:19.977 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:19.977 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:19.977 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:19.977 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:19.977 [COORDINATOR] Coordenador desligado
+[       OK ] FullFlowIntegrationTest.CompleteLifecycle (1102 ms)
+[----------] 1 test from FullFlowIntegrationTest (1102 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1102 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Passed.
+"FullFlowIntegrationTest.CompleteLifecycle" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.CompleteLifecycle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+38/41 Testing: FullFlowIntegrationTest.HTTPServerIntegration
+38/41 Test: FullFlowIntegrationTest.HTTPServerIntegration
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.HTTPServerIntegration" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.HTTPServerIntegration" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.HTTPServerIntegration
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.HTTPServerIntegration
+[INFO] 09/09/2025 11:58:20.089 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:20.089 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:20.089 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:20.089 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:20.089 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:20.089 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:20.089 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:20.089 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:20.089 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:20.089 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:20.290 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:21.090 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:21.090 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:21.090 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:21.090 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:21.090 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:21.090 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:21.090 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:21.091 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:21.091 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:21.091 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:21.091 [COORDINATOR] Coordenador desligado
+[       OK ] FullFlowIntegrationTest.HTTPServerIntegration (1102 ms)
+[----------] 1 test from FullFlowIntegrationTest (1102 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1102 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Passed.
+"FullFlowIntegrationTest.HTTPServerIntegration" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.HTTPServerIntegration" time elapsed: 00:00:01
+----------------------------------------------------------
+
+39/41 Testing: FullFlowIntegrationTest.MechanismResilience
+39/41 Test: FullFlowIntegrationTest.MechanismResilience
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.MechanismResilience" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.MechanismResilience" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.MechanismResilience
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.MechanismResilience
+[INFO] 09/09/2025 11:58:21.203 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:21.203 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:21.203 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:21.203 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:21.203 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:21.203 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:21.203 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:21.203 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:21.204 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:21.204 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:21.404 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:21.404 [SHMEM] Criando memória compartilhada com chave: 14262
+[INFO] 09/09/2025 11:58:21.404 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:21.404 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:21.404 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:21.404 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:21.405 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:21.505 [COORDINATOR] Reiniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:21.505 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:21.505 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:22.005 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:22.005 [SHMEM] Criando memória compartilhada com chave: 15302
+[INFO] 09/09/2025 11:58:22.005 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:22.005 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:22.005 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:22.006 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:22.006 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:22.206 [SHMEM] Escrito na memória: post-restart message
+[INFO] 09/09/2025 11:58:22.206 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:23.206 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:23.206 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:23.206 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:23.206 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:23.206 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:23.207 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:23.207 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:23.207 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:23.207 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:23.207 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:23.207 [COORDINATOR] Coordenador desligado
+[       OK ] FullFlowIntegrationTest.MechanismResilience (2104 ms)
+[----------] 1 test from FullFlowIntegrationTest (2104 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2104 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   2.11 sec
+----------------------------------------------------------
+Test Passed.
+"FullFlowIntegrationTest.MechanismResilience" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.MechanismResilience" time elapsed: 00:00:02
+----------------------------------------------------------
+
+40/41 Testing: FullFlowIntegrationTest.GracefulShutdown
+40/41 Test: FullFlowIntegrationTest.GracefulShutdown
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.GracefulShutdown" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.GracefulShutdown" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.GracefulShutdown
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.GracefulShutdown
+[INFO] 09/09/2025 11:58:23.319 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:23.319 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:23.319 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:23.319 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:23.319 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:23.319 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:23.319 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:23.319 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:23.319 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:23.319 [HTTP] Servidor HTTP iniciado na porta 8090
+[INFO] 09/09/2025 11:58:23.520 [COORDINATOR] Iniciando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:23.520 [SHMEM] Criando memória compartilhada com chave: 9870
+[INFO] 09/09/2025 11:58:23.520 [SHMEM] Anexado à memória compartilhada
+[INFO] 09/09/2025 11:58:23.520 [SHMEM] Semáforos criados e inicializados
+[INFO] 09/09/2025 11:58:23.520 [SHMEM] Memória compartilhada criada com sucesso
+[INFO] 09/09/2025 11:58:23.520 [SHARED_MEMORY] Memória compartilhada inicializada
+[INFO] 09/09/2025 11:58:23.520 [COORDINATOR] shared_memory iniciado com sucesso
+[INFO] 09/09/2025 11:58:23.520 [COORDINATOR] Iniciando mecanismo: pipes
+[INFO] 09/09/2025 11:58:23.520 [PIPE] Creating anonymous pipe
+[INFO] 09/09/2025 11:58:23.521 [PIPE] Parent process - child PID: 9601
+[INFO] 09/09/2025 11:58:23.521 [PIPES] Pipe inicializado como processo pai
+[INFO] 09/09/2025 11:58:23.521 [COORDINATOR] pipes iniciado com sucesso
+[INFO] 09/09/2025 11:58:23.521 [PIPE_CHILD] Child process created
+[INFO] 09/09/2025 11:58:23.521 [PIPE_CHILD] Starting child listen loop
+[INFO] 09/09/2025 11:58:23.621 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:24.320 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:24.320 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:24.320 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:24.320 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:24.320 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:24.320 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:24.320 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:24.320 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:24.320 [PIPE] Closing pipe
+[INFO] 09/09/2025 11:58:24.321 [PIPE_CHILD] Pipe became invalid, exiting child loop
+[INFO] 09/09/2025 11:58:24.321 [PIPE_CHILD] Child process exiting
+[INFO] 09/09/2025 11:58:24.322 [PIPE] Child process terminated with code: 0
+[INFO] 09/09/2025 11:58:24.322 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:24.322 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:24.322 [COORDINATOR] Coordenador desligado
+[       OK ] FullFlowIntegrationTest.GracefulShutdown (1103 ms)
+[----------] 1 test from FullFlowIntegrationTest (1103 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1104 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Passed.
+"FullFlowIntegrationTest.GracefulShutdown" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.GracefulShutdown" time elapsed: 00:00:01
+----------------------------------------------------------
+
+41/41 Testing: FullFlowIntegrationTest.JSONParsing
+41/41 Test: FullFlowIntegrationTest.JSONParsing
+Command: "/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests/integration_tests" "--gtest_filter=FullFlowIntegrationTest.JSONParsing" "--gtest_also_run_disabled_tests"
+Directory: /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/tests
+"FullFlowIntegrationTest.JSONParsing" start time: Sep 09 11:58 -03
+Output:
+----------------------------------------------------------
+Running main() from /home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = FullFlowIntegrationTest.JSONParsing
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FullFlowIntegrationTest
+[ RUN      ] FullFlowIntegrationTest.JSONParsing
+[INFO] 09/09/2025 11:58:24.434 [COORDINATOR] IPCCoordinator inicializado
+[INFO] 09/09/2025 11:58:24.434 [HTTP] HTTPServer criado na porta 8090
+[INFO] 09/09/2025 11:58:24.434 [COORDINATOR] Inicializando coordenador IPC...
+[INFO] 09/09/2025 11:58:24.434 [COORDINATOR] Signal handlers configurados
+[INFO] 09/09/2025 11:58:24.434 [PIPE] PipeManager created
+[INFO] 09/09/2025 11:58:24.434 [SOCKET] SocketManager criado
+[INFO] 09/09/2025 11:58:24.434 [SHMEM] SharedMemoryManager criado
+[INFO] 09/09/2025 11:58:24.434 [COORDINATOR] Managers criados com sucesso
+[INFO] 09/09/2025 11:58:24.434 [COORDINATOR] Coordenador IPC inicializado com sucesso
+[INFO] 09/09/2025 11:58:24.435 [HTTP] Servidor HTTP iniciado na porta 8090
+/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/tests/integration/test_full_flow.cpp:277: Failure
+Value of: cmd.fromJSON(complex_json)
+  Actual: false
+Expected: true
+
+/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/tests/integration/test_full_flow.cpp:278: Failure
+Expected equality of these values:
+  cmd.action
+    Which is: ""
+  "send"
+
+/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/tests/integration/test_full_flow.cpp:279: Failure
+Expected equality of these values:
+  cmd.mechanism
+    Which is: 4-byte object <70-D2 F9-AC>
+  IPCMechanism::SHARED_MEMORY
+    Which is: 4-byte object <02-00 00-00>
+
+/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/tests/integration/test_full_flow.cpp:280: Failure
+Value of: cmd.message.empty()
+  Actual: true
+Expected: false
+
+/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/tests/integration/test_full_flow.cpp:285: Failure
+Expected: (serialized.find("send")) != (std::string::npos), actual: 18446744073709551615 vs 18446744073709551615
+
+[INFO] 09/09/2025 11:58:24.636 [HTTP] Parando servidor HTTP...
+[INFO] 09/09/2025 11:58:25.435 [HTTP] Servidor HTTP parado
+[INFO] 09/09/2025 11:58:25.435 [COORDINATOR] Iniciando shutdown do coordenador...
+[INFO] 09/09/2025 11:58:25.435 [COORDINATOR] Parando mecanismo: pipes
+[INFO] 09/09/2025 11:58:25.435 [COORDINATOR] pipes parado
+[INFO] 09/09/2025 11:58:25.435 [COORDINATOR] Parando mecanismo: sockets
+[INFO] 09/09/2025 11:58:25.435 [COORDINATOR] sockets parado
+[INFO] 09/09/2025 11:58:25.436 [COORDINATOR] Parando mecanismo: shared_memory
+[INFO] 09/09/2025 11:58:25.436 [COORDINATOR] shared_memory parado
+[INFO] 09/09/2025 11:58:25.436 [SHMEM] SharedMemoryManager destruído
+[INFO] 09/09/2025 11:58:25.436 [COORDINATOR] Cleanup concluído
+[INFO] 09/09/2025 11:58:25.436 [COORDINATOR] Coordenador desligado
+[  FAILED  ] FullFlowIntegrationTest.JSONParsing (1102 ms)
+[----------] 1 test from FullFlowIntegrationTest (1102 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1102 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] FullFlowIntegrationTest.JSONParsing
+
+ 1 FAILED TEST
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Failed.
+"FullFlowIntegrationTest.JSONParsing" end time: Sep 09 11:58 -03
+"FullFlowIntegrationTest.JSONParsing" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Sep 09 11:58 -03
