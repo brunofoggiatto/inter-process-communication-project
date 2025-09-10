@@ -316,6 +316,13 @@ HTTPResponse HTTPServer::routeRequest(const HTTPRequest& request) {
         modified_request.params = params;
         return handleIPCLogs(modified_request);
     }
+
+    // Get detail: GET /ipc/detail/{mechanism}
+    if (matchRoute("/ipc/detail/*", request.path, params) && request.method == "GET") {
+        HTTPRequest modified_request = request;
+        modified_request.params = params;
+        return handleIPCDetail(modified_request);
+    }
     
     // Arquivos estáticos
     if (request.method == "GET" && !static_path_.empty()) {
@@ -412,8 +419,7 @@ HTTPResponse HTTPServer::handleIPCSend(const HTTPRequest& request) {
         return response;
     }
     
-    // Parse JSON do body
-    // Por simplicidade, fazemos parsing manual básico
+    // Parse JSON do body (parsing manual simples)
     std::string mechanism_str;
     std::string message;
     
@@ -465,6 +471,29 @@ HTTPResponse HTTPServer::handleIPCSend(const HTTPRequest& request) {
         response.setError(500, "Failed to send message via " + mechanism_str);
     }
     
+    return response;
+}
+
+HTTPResponse HTTPServer::handleIPCDetail(const HTTPRequest& request) {
+    if (!coordinator_) {
+        HTTPResponse response;
+        response.setError(503, "IPC Coordinator not available");
+        return response;
+    }
+
+    std::string mechanism = request.getParam("0");
+    IPCMechanism mech;
+    if (mechanism == "pipes") mech = IPCMechanism::PIPES;
+    else if (mechanism == "sockets") mech = IPCMechanism::SOCKETS;
+    else if (mechanism == "shmem" || mechanism == "shared_memory") mech = IPCMechanism::SHARED_MEMORY;
+    else {
+        HTTPResponse response;
+        response.setError(400, "Invalid mechanism: " + mechanism);
+        return response;
+    }
+
+    HTTPResponse response;
+    response.setJSON(coordinator_->getMechanismDetailJSON(mech));
     return response;
 }
 
@@ -580,6 +609,9 @@ void HTTPServer::addCORSHeaders(HTTPResponse& response) {
     response.headers["Access-Control-Allow-Origin"] = "*";
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS";
     response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization";
+    // Evita cache para respostas da API
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+    response.headers["Pragma"] = "no-cache";
 }
 
 void HTTPServer::logRequest(const HTTPRequest& request, const HTTPResponse& response) {
@@ -596,21 +628,43 @@ void HTTPServer::logRequest(const HTTPRequest& request, const HTTPResponse& resp
 }
 
 std::string HTTPServer::readFromSocket(int socket) {
+    // Lê cabeçalhos primeiro
+    std::string data;
     char buffer[4096];
-    std::string result;
-    
     while (true) {
-        ssize_t bytes = recv(socket, buffer, sizeof(buffer) - 1, MSG_DONTWAIT);
+        ssize_t bytes = recv(socket, buffer, sizeof(buffer), 0);
         if (bytes <= 0) break;
-        
-        buffer[bytes] = '\0';
-        result += buffer;
-        
-        // Para quando encontrar fim dos headers HTTP
-        if (result.find("\r\n\r\n") != std::string::npos) break;
+        data.append(buffer, buffer + bytes);
+        // Checa fim de headers
+        auto pos = data.find("\r\n\r\n");
+        if (pos != std::string::npos) {
+            // Descobre Content-Length
+            std::string headers = data.substr(0, pos + 4);
+            size_t cl_pos = headers.find("Content-Length:");
+            size_t content_length = 0;
+            if (cl_pos != std::string::npos) {
+                cl_pos += std::string("Content-Length:").size();
+                // Pula possíveis espaços
+                while (cl_pos < headers.size() && (headers[cl_pos] == ' ' || headers[cl_pos] == '\t')) cl_pos++;
+                size_t end = headers.find("\r\n", cl_pos);
+                if (end != std::string::npos) {
+                    content_length = static_cast<size_t>(std::stol(headers.substr(cl_pos, end - cl_pos)));
+                }
+            }
+
+            size_t have_body = data.size() - (pos + 4);
+            while (have_body < content_length) {
+                ssize_t more = recv(socket, buffer, sizeof(buffer), 0);
+                if (more <= 0) break;
+                data.append(buffer, buffer + more);
+                have_body += static_cast<size_t>(more);
+            }
+            break;
+        }
+        // Proteção: evita loop infinito em requisições sem headers completos
+        if (data.size() > 1'000'000) break; // 1MB
     }
-    
-    return result;
+    return data;
 }
 
 bool HTTPServer::writeToSocket(int socket, const std::string& data) {

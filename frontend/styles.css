@@ -58,6 +58,19 @@ h1 {
     position: relative;
 }
 
+.ipc-card .details {
+    color: #e8e8e8;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    display: grid;
+    gap: 6px;
+}
+
+.ipc-card .details .row {
+    display: flex;
+    gap: 6px;
+}
+
 /* Bolinha indicadora no canto superior direito */
 .ipc-card::before {
     content: '';
@@ -263,10 +276,20 @@ input[type="text"] {
     border-left: 3px solid #4caf50; 
     color: #c8e6c9; 
 }
+.log-entry.started {
+    background: rgba(76, 175, 80, 0.2);
+    border-left: 3px solid #2e7d32;
+    color: #c8e6c9;
+}
 .log-entry.error { 
     background: rgba(244, 67, 54, 0.2); 
     border-left: 3px solid #f44336; 
     color: #ffcdd2; 
+}
+.log-entry.stopped {
+    background: rgba(244, 67, 54, 0.2);
+    border-left: 3px solid #b71c1c;
+    color: #ffcdd2;
 }
 .log-entry.info { 
     background: rgba(255, 152, 0, 0.2); 

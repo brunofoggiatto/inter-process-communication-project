@@ -9,6 +9,8 @@
 #include <chrono>
 #include <csignal>
 #include <sstream>
+#include <filesystem>
+#include <cstdlib>
 #include "ipc/ipc_coordinator.h"
 #include "common/logger.h"
 #include "server/http_server.h"
@@ -33,7 +35,8 @@ void printHelp() {
               << "  -s, --server   Executa com servidor web integrado\n"
               << "  -i, --interactive  Modo interativo (padrão)\n"
               << "  -l, --log <arquivo>  Define arquivo de log\n"
-              << "  -v, --verbose  Modo verbose (DEBUG)\n\n"
+              << "  -v, --verbose  Modo verbose (DEBUG)\n"
+              << "  -p, --port <n> Porta HTTP (padrão 9000)\n\n"
               << "Comandos interativos:\n"
               << "  start <mecanismo>  - Liga mecanismo (pipes|sockets|shmem)\n"
               << "  stop <mecanismo>   - Para mecanismo\n"
@@ -172,7 +175,7 @@ void interactiveMode(IPCCoordinator& coordinator) {
     }
 }
 
-void serverMode(IPCCoordinator& coordinator) {
+void serverMode(IPCCoordinator& coordinator, int http_port) {
     std::cout << "Iniciando modo servidor web integrado...\n";
     
     // Inicia todos os mecanismos
@@ -183,20 +186,50 @@ void serverMode(IPCCoordinator& coordinator) {
     std::cout << "✓ Mecanismos IPC iniciados\n";
     
     // Cria e inicia o servidor HTTP
-    HTTPServer server(9000);
+    HTTPServer server(http_port);
     server.setIPCCoordinator(std::shared_ptr<IPCCoordinator>(&coordinator, [](IPCCoordinator*) {}));
     
     // Configura path para arquivos estáticos (frontend)
-    server.setStaticPath("/home/brunohfoggiatto/Documentos/Sistemas de Computação/IPC PROJECT/inter-process-communication-project/frontend");
+    // Tenta caminhos relativos ao local do executável/build para portabilidade
+    {
+        std::string staticPath = "./frontend";
+        try {
+            namespace fs = std::filesystem;
+            const std::vector<std::string> candidates = {
+                "../../frontend", // típico: build/bin -> repo/frontend
+                "../frontend",
+                "./frontend"
+            };
+            for (const auto& c : candidates) {
+                fs::path p = fs::path(c) / "index.html";
+                if (fs::exists(p)) {
+                    staticPath = c;
+                    break;
+                }
+            }
+        } catch (...) {
+            // fallback para ./frontend
+        }
+        server.setStaticPath(staticPath);
+    }
     
     // Inicia o servidor
     if (!server.start()) {
-        std::cerr << "❌ Erro ao iniciar servidor HTTP!\n";
-        return;
+        // Porta ocupada? tenta próximas 10 portas
+        bool started = false;
+        for (int p = http_port + 1; p <= http_port + 10; ++p) {
+            server.setPort(p);
+            if (server.start()) { started = true; http_port = p; break; }
+        }
+        if (!started) {
+            std::cerr << "❌ Erro ao iniciar servidor HTTP! Porta ocupada e tentativas de fallback falharam.\n";
+            std::cerr << "Sugestão: usar --port <n> ou liberar a porta com 'lsof -i :" << http_port << "'" << std::endl;
+            return;
+        }
     }
     
-    std::cout << "✓ Servidor HTTP iniciado na porta 9000\n";
-    std::cout << "✓ Acesse: http://localhost:9000/\n";
+    std::cout << "✓ Servidor HTTP iniciado na porta " << http_port << "\n";
+    std::cout << "✓ Acesse: http://localhost:" << http_port << "/\n";
     std::cout << "Status inicial:\n" << coordinator.getStatusJSON() << "\n\n";
     
     // Loop principal do servidor
@@ -261,6 +294,7 @@ int main(int argc, char* argv[]) {
     bool server_mode = false;
     bool verbose = false;
     std::string log_file = "";
+    int http_port = 9000;
     
     // Parse de argumentos da linha de comando
     for (int i = 1; i < argc; i++) {
@@ -284,6 +318,18 @@ int main(int argc, char* argv[]) {
         }
         else if (arg == "-v" || arg == "--verbose") {
             verbose = true;
+        }
+        else if (arg == "-p" || arg == "--port") {
+            if (i + 1 < argc) {
+                http_port = std::atoi(argv[++i]);
+                if (http_port <= 0 || http_port > 65535) {
+                    std::cerr << "Erro: porta inválida: " << http_port << "\n";
+                    return 1;
+                }
+            } else {
+                std::cerr << "Erro: opção -p requer número da porta\n";
+                return 1;
+            }
         }
         else if (arg == "-l" || arg == "--log") {
             if (i + 1 < argc) {
@@ -319,6 +365,7 @@ int main(int argc, char* argv[]) {
     std::cout << "=== Sistema de Comunicação Inter-Processo ===\n";
     std::cout << "Modo: " << (interactive_mode ? "Interativo" : "Daemon") << "\n";
     std::cout << "Log level: " << (verbose ? "DEBUG" : "INFO") << "\n";
+    std::cout << "HTTP port: " << http_port << "\n";
     if (!log_file.empty()) {
         std::cout << "Log file: " << log_file << "\n";
     }
@@ -339,7 +386,7 @@ int main(int argc, char* argv[]) {
         if (interactive_mode) {
             interactiveMode(coordinator);
         } else if (server_mode) {
-            serverMode(coordinator);
+            serverMode(coordinator, http_port);
         } else {
             daemonMode(coordinator);
         }
