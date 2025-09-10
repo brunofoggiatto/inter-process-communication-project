@@ -14,18 +14,47 @@
 
 namespace ipc_project {
 
-// Converte nossa estrutura de dados pro formato JSON do frontend
+// Converte nossa estrutura de dados pro formato JSON seguindo especificação do enunciado
 std::string PipeData::toJSON() const {
+    // Gera timestamp ISO-8601
+    auto now = std::chrono::system_clock::now();
+    auto time_t = std::chrono::system_clock::to_time_t(now);
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+        now.time_since_epoch()) % 1000;
+    
+    std::ostringstream timestamp;
+    timestamp << std::put_time(std::gmtime(&time_t), "%Y-%m-%dT%H:%M:%S");
+    timestamp << "." << std::setfill('0') << std::setw(3) << ms.count() << "Z";
+    
+    // Mapeia status interno para padrão da especificação
+    std::string operation_type = "write";
+    std::string status_type = "success";
+    
+    if (status == "sent" || status == "write") {
+        operation_type = "write";
+        status_type = "success";
+    } else if (status == "received" || status == "read") {
+        operation_type = "read"; 
+        status_type = "success";
+    } else if (status.find("error") != std::string::npos) {
+        status_type = "error";
+    }
+    
     std::ostringstream json;
     json << "{"
+         << "\"type\":\"pipes\","
+         << "\"timestamp\":\"" << timestamp.str() << "\","
+         << "\"operation\":\"" << operation_type << "\","
+         << "\"process_id\":" << sender_pid << ","
+         << "\"data\":{"
          << "\"message\":\"" << message << "\","
          << "\"bytes\":" << bytes << ","
          << "\"time_ms\":" << std::fixed << std::setprecision(3) << time_ms << ","
-         << "\"status\":\"" << status << "\","
          << "\"sender_pid\":" << sender_pid << ","
-         << "\"receiver_pid\":" << receiver_pid << ","
-         << "\"ipc_type\":\"anonymous_pipe\""
-         // TODO: adicionar mais campos? tipo timestamp absoluto?
+         << "\"receiver_pid\":" << receiver_pid
+         << "},"
+         << "\"status\":\"" << status_type << "\","
+         << "\"error_message\":" << (status_type == "error" ? ("\"" + status + "\"") : "null")
          << "}";
     return json.str();
 }
@@ -125,6 +154,15 @@ bool PipeManager::isParent() const {
 
 // Manda mensagem pelo pipe (so processo pai consegue fazer isso)
 bool PipeManager::sendMessage(const std::string& message) {
+    // Validação de entrada
+    const size_t MAX_MESSAGE_SIZE = 8192 - 1; // Tamanho do buffer menos 1 para null terminator
+    if (message.length() > MAX_MESSAGE_SIZE) {
+        updateOperation(message, 0, "error_message_too_large");
+        logger_.error("Message too large (" + std::to_string(message.length()) + " bytes, max " + 
+                     std::to_string(MAX_MESSAGE_SIZE) + ")", "PIPE");
+        return false;
+    }
+    
     if (!is_active_ || !is_parent_ || pipe_fd_[1] == -1) {
         updateOperation(message, 0, "error_invalid_state");
         logger_.error("Attempt to write to invalid pipe", "PIPE");
@@ -171,9 +209,9 @@ std::string PipeManager::receiveMessage() {
     
     auto start_time = std::chrono::high_resolution_clock::now();
     
-    // buffer pra guardar a mensagem que vamos receber
-    char buf[1024];  // nome mais curto, mais comum em C
-    ssize_t bytes_read = read(pipe_fd_[0], buf, sizeof(buf) - 1);  // mudei pra buf
+    // buffer pra guardar a mensagem que vamos receber - aumentado para 8KB
+    char buf[8192];  // buffer de 8KB para mensagens maiores
+    ssize_t bytes_read = read(pipe_fd_[0], buf, sizeof(buf) - 1);
     
     auto end_time = std::chrono::high_resolution_clock::now();
     double elapsed = std::chrono::duration<double, std::milli>(end_time - start_time).count();
@@ -291,7 +329,7 @@ void PipeManager::runChildLoop() {
     
     // Loop infinito aguardando mensagens do processo pai
     while (true) {
-        char buf[1024];
+        char buf[8192];  // buffer de 8KB para mensagens maiores
         ssize_t bytes_read = read(pipe_fd_[0], buf, sizeof(buf) - 1);
         
         if (bytes_read == -1) {
