@@ -55,43 +55,71 @@ std::string CoordinatorStatus::toJSON() const {
 }
 
 bool IPCCommand::fromJSON(const std::string& json) {
-    // Implementação básica de parsing JSON
-    // Em um projeto real, usaria biblioteca como nlohmann/json
-    // Por simplicidade, vamos fazer parsing manual dos campos principais
+    // Parsing JSON melhorado com validação mais robusta
     
-    if (json.find("\"action\":\"start\"") != std::string::npos) {
-        action = "start";
-    } else if (json.find("\"action\":\"stop\"") != std::string::npos) {
-        action = "stop";
-    } else if (json.find("\"action\":\"send\"") != std::string::npos) {
-        action = "send";
-    } else if (json.find("\"action\":\"status\"") != std::string::npos) {
-        action = "status";
-    } else if (json.find("\"action\":\"logs\"") != std::string::npos) {
-        action = "logs";
-    } else {
+    // Verifica se JSON tem estrutura mínima válida
+    if (json.empty() || json.find("{") == std::string::npos || json.find("}") == std::string::npos) {
         return false;
     }
     
-    // Determina o mecanismo
-    if (json.find("\"mechanism\":\"pipes\"") != std::string::npos) {
-        mechanism = IPCMechanism::PIPES;
-    } else if (json.find("\"mechanism\":\"sockets\"") != std::string::npos) {
-        mechanism = IPCMechanism::SOCKETS;
-    } else if (json.find("\"mechanism\":\"shared_memory\"") != std::string::npos) {
-        mechanism = IPCMechanism::SHARED_MEMORY;
-    } else {
-        mechanism = IPCMechanism::PIPES; // padrão
+    // Helper lambda para extrair valor de string JSON de forma mais segura
+    auto extractStringValue = [&json](const std::string& key) -> std::string {
+        std::string search_pattern = "\"" + key + "\":\"";
+        size_t start = json.find(search_pattern);
+        if (start == std::string::npos) return "";
+        
+        start += search_pattern.length();
+        size_t end = start;
+        
+        // Procura o fechamento da string, ignorando escapes
+        while (end < json.length()) {
+            if (json[end] == '"' && (end == start || json[end-1] != '\\')) {
+                break;
+            }
+            end++;
+        }
+        
+        if (end >= json.length()) return "";
+        return json.substr(start, end - start);
+    };
+    
+    // Extrai action
+    std::string action_value = extractStringValue("action");
+    if (action_value.empty()) {
+        return false; // action é obrigatório
     }
     
-    // Extrai mensagem se houver
-    size_t msg_start = json.find("\"message\":\"");
-    if (msg_start != std::string::npos) {
-        msg_start += 11; // tamanho de "message":"
-        size_t msg_end = json.find("\"", msg_start);
-        if (msg_end != std::string::npos) {
-            message = json.substr(msg_start, msg_end - msg_start);
-        }
+    // Valida actions conhecidas
+    if (action_value == "start" || action_value == "stop" || action_value == "send" || 
+        action_value == "status" || action_value == "logs") {
+        action = action_value;
+    } else {
+        return false; // action inválida
+    }
+    
+    // Extrai mechanism
+    std::string mechanism_value = extractStringValue("mechanism");
+    if (mechanism_value == "pipes") {
+        mechanism = IPCMechanism::PIPES;
+    } else if (mechanism_value == "sockets") {
+        mechanism = IPCMechanism::SOCKETS;
+    } else if (mechanism_value == "shared_memory") {
+        mechanism = IPCMechanism::SHARED_MEMORY;
+    } else {
+        // Se não especificado, usa PIPES como padrão apenas para comandos que não precisam de mechanism
+        mechanism = IPCMechanism::PIPES;
+    }
+    
+    // Extrai message (opcional)
+    message = extractStringValue("message");
+    
+    // Validação adicional baseada na action
+    if ((action == "start" || action == "stop") && mechanism_value.empty()) {
+        return false; // start/stop precisam de mechanism
+    }
+    
+    if (action == "send" && (mechanism_value.empty() || message.empty())) {
+        return false; // send precisa de mechanism e message
     }
     
     return true;

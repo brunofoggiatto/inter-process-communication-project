@@ -14,17 +14,50 @@
 
 namespace ipc_project {
 
-// Converte dados da operação atual pro formato JSON que o frontend entende
+// Converte dados da operação atual pro formato JSON seguindo especificação do enunciado
 std::string SocketData::toJSON() const {
+    // Gera timestamp ISO-8601
+    auto now = std::chrono::system_clock::now();
+    auto time_t = std::chrono::system_clock::to_time_t(now);
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+        now.time_since_epoch()) % 1000;
+    
+    std::ostringstream timestamp;
+    timestamp << std::put_time(std::gmtime(&time_t), "%Y-%m-%dT%H:%M:%S");
+    timestamp << "." << std::setfill('0') << std::setw(3) << ms.count() << "Z";
+    
+    // Mapeia status interno para padrão da especificação
+    std::string operation_type = "connect";
+    std::string status_type = "success";
+    
+    if (status == "sent" || status == "write") {
+        operation_type = "write";
+        status_type = "success";
+    } else if (status == "received" || status == "read") {
+        operation_type = "read";
+        status_type = "success";
+    } else if (status == "ready" || status == "connected") {
+        operation_type = "connect";
+        status_type = "success";
+    } else if (status.find("error") != std::string::npos) {
+        status_type = "error";
+    }
+    
     std::ostringstream json;
     json << "{"
+         << "\"type\":\"sockets\","
+         << "\"timestamp\":\"" << timestamp.str() << "\","
+         << "\"operation\":\"" << operation_type << "\","
+         << "\"process_id\":" << sender_pid << ","
+         << "\"data\":{"
          << "\"message\":\"" << message << "\","
          << "\"bytes\":" << bytes << ","
          << "\"time_ms\":" << std::fixed << std::setprecision(3) << time_ms << ","
-         << "\"status\":\"" << status << "\","
          << "\"sender_pid\":" << sender_pid << ","
-         << "\"receiver_pid\":" << receiver_pid << ","
-         << "\"ipc_type\":\"unix_socket\""
+         << "\"receiver_pid\":" << receiver_pid
+         << "},"
+         << "\"status\":\"" << status_type << "\","
+         << "\"error_message\":" << (status_type == "error" ? ("\"" + status + "\"") : "null")
          << "}";
     return json.str();
 }
@@ -122,6 +155,15 @@ bool SocketManager::isParent() const {
 
 // Função que o pai usa pra enviar mensagem ao filho
 bool SocketManager::sendMessage(const std::string& message) {
+    // Validação de entrada
+    const size_t MAX_MESSAGE_SIZE = 8192 - 1; // Tamanho do buffer menos 1 para null terminator
+    if (message.length() > MAX_MESSAGE_SIZE) {
+        updateOperation(message, 0, "error_message_too_large");
+        logger_.error("Message too large (" + std::to_string(message.length()) + " bytes, max " + 
+                     std::to_string(MAX_MESSAGE_SIZE) + ")", "SOCKET");
+        return false;
+    }
+    
     if (!is_active_ || !is_parent_ || socket_fd_[1] == -1) {
         updateOperation(message, 0, "error_invalid_state");
         logger_.error("Tentativa de envio inválida", "SOCKET");
@@ -163,7 +205,7 @@ std::string SocketManager::receiveMessage() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    char buf[1024];  // buffer temporário
+    char buf[8192];  // buffer de 8KB para mensagens maiores
     ssize_t bytes_read = read(socket_fd_[0], buf, sizeof(buf) - 1);
 
     auto end = std::chrono::high_resolution_clock::now();
@@ -268,7 +310,7 @@ void SocketManager::runChildLoop() {
     
     // Loop infinito aguardando mensagens do processo pai
     while (true) {
-        char buf[1024];
+        char buf[8192];  // buffer de 8KB para mensagens maiores
         ssize_t bytes_read = read(socket_fd_[0], buf, sizeof(buf) - 1);
         
         if (bytes_read == -1) {

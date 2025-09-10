@@ -2,6 +2,21 @@
 
 C++23 application demonstrating three IPC mechanisms with a real-time web interface for visualization and control.
 
+## Quick Start
+
+```bash
+# Build the project
+mkdir -p build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Debug
+make -j$(nproc)
+
+# Start web server
+./backend/web_server
+
+# Open browser
+http://localhost:9000/
+```
+
 ## Overview
 
 Implemented mechanisms:
@@ -42,13 +57,15 @@ make -j$(nproc)
 ctest --output-on-failure   # optional, runs tests
 ```
 
-Generated binary: `build/bin/ipc_system`
+Generated binaries: 
+- Main IPC system: `build/bin/ipc_system`
+- Web server: `build/backend/web_server`
 
 ## Execution
 
-1) Start the backend in server mode (exposes API and serves frontend):
+1) Start the web server (exposes API and serves frontend):
 ```bash
-./build/bin/ipc_system --server [--port 9000]
+./build/backend/web_server [--port 9000]
 ```
 - Default port: 9000 (use `--port <n>` to choose another)
 - Server automatically searches for frontend in relative paths to binary (e.g.: `../../frontend`, `../frontend`, `./frontend`).
@@ -99,10 +116,18 @@ curl -X POST http://localhost:9000/ipc/send \
 curl http://localhost:9000/ipc/detail/shared_memory
 ```
 
+## Alternative Execution
+
+You can also run the main IPC system directly:
+```bash
+./build/bin/ipc_system --server [--port 9000]
+```
+
 ## Tips
 
-- If frontend doesn't open, confirm the binary is being executed from the generated `build/bin` and the `frontend/` folder exists in the repo. Server tries `../../frontend`, then `../frontend`, then `./frontend`.
+- If frontend doesn't open, confirm the web server is being executed from the project root and the `frontend/` folder exists. Server tries `./frontend`, then `../frontend`, then `../../frontend`.
 - If using older GCC without complete `std::format` support, use GCC 13+.
+- To kill any service running on port 9000: `sudo fuser -k 9000/tcp`
 
 ## Autoria
 
