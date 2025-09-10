@@ -180,7 +180,7 @@ TEST_F(HTTPServerTest, CORSConfiguration) {
     EXPECT_NE(response_str.find("Access-Control-Allow-Origin"), std::string::npos);
 }
 
-// Teste de integração com IPC coordinator
+// Integration test with IPC coordinator
 TEST_F(HTTPServerTest, IPCIntegration) {
     // Verifica que servidor está integrado com coordinator
     ASSERT_NE(coordinator, nullptr);

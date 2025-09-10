@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @brief Ponto de entrada principal para o sistema IPC
+ * @brief Main entry point for the IPC system
  */
 
 #include <iostream>
@@ -17,70 +17,70 @@
 
 using namespace ipc_project;
 
-// Variável global pra controlar o loop principal
+// Global variable to control main loop
 volatile bool keep_running = true;
 
-// Handler pra sinais do sistema
+// System signal handler
 void signalHandler(int signal) {
-    std::cout << "\nSinal recebido (" << signal << "), encerrando..." << std::endl;
+    std::cout << "\nSignal received (" << signal << "), shutting down..." << std::endl;
     keep_running = false;
 }
 
 void printHelp() {
-    std::cout << "\n=== Sistema IPC - Comunicação Entre Processos ===\n"
-              << "Uso: ./main [opções]\n\n"
-              << "Opções:\n"
-              << "  -h, --help     Mostra esta ajuda\n"
-              << "  -d, --daemon   Executa em modo daemon (sem interação)\n"
-              << "  -s, --server   Executa com servidor web integrado\n"
-              << "  -i, --interactive  Modo interativo (padrão)\n"
-              << "  -l, --log <arquivo>  Define arquivo de log\n"
-              << "  -v, --verbose  Modo verbose (DEBUG)\n"
-              << "  -p, --port <n> Porta HTTP (padrão 9000)\n\n"
-              << "Comandos interativos:\n"
-              << "  start <mecanismo>  - Liga mecanismo (pipes|sockets|shmem)\n"
-              << "  stop <mecanismo>   - Para mecanismo\n"
-              << "  send <mecanismo> <mensagem>  - Envia mensagem\n"
-              << "  status             - Mostra status de todos os mecanismos\n"
-              << "  logs <mecanismo>   - Mostra logs do mecanismo\n"
-              << "  help               - Mostra comandos disponíveis\n"
-              << "  quit, exit         - Sair do programa\n\n";
+    std::cout << "\n=== IPC System - Inter-Process Communication ===\n"
+              << "Usage: ./main [options]\n\n"
+              << "Options:\n"
+              << "  -h, --help     Show this help\n"
+              << "  -d, --daemon   Run in daemon mode (no interaction)\n"
+              << "  -s, --server   Run with integrated web server\n"
+              << "  -i, --interactive  Interactive mode (default)\n"
+              << "  -l, --log <file>  Set log file\n"
+              << "  -v, --verbose  Verbose mode (DEBUG)\n"
+              << "  -p, --port <n> HTTP port (default 9000)\n\n"
+              << "Interactive commands:\n"
+              << "  start <mechanism>  - Start mechanism (pipes|sockets|shmem)\n"
+              << "  stop <mechanism>   - Stop mechanism\n"
+              << "  send <mechanism> <message>  - Send message\n"
+              << "  status             - Show status of all mechanisms\n"
+              << "  logs <mechanism>   - Show mechanism logs\n"
+              << "  help               - Show available commands\n"
+              << "  quit, exit         - Exit program\n\n";
 }
 
 void printInteractiveHelp() {
-    std::cout << "\n=== Comandos Disponíveis ===\n"
-              << "start pipes        - Inicia comunicação por pipes\n"
-              << "start sockets      - Inicia comunicação por sockets\n"
-              << "start shmem        - Inicia memória compartilhada\n"
-              << "stop <mecanismo>   - Para o mecanismo especificado\n"
-              << "send pipes \"mensagem\"    - Envia mensagem via pipes\n"
-              << "send sockets \"mensagem\"  - Envia mensagem via sockets\n"
-              << "send shmem \"mensagem\"    - Escreve na memória compartilhada\n"
-              << "status             - Mostra status completo\n"
-              << "logs <mecanismo>   - Mostra últimos logs\n"
-              << "help               - Mostra esta ajuda\n"
-              << "quit / exit        - Sair\n\n";
+    std::cout << "\n=== Available Commands ===\n"
+              << "start pipes        - Start pipe communication\n"
+              << "start sockets      - Start socket communication\n"
+              << "start shmem        - Start shared memory\n"
+              << "stop <mechanism>   - Stop specified mechanism\n"
+              << "send pipes \"message\"    - Send message via pipes\n"
+              << "send sockets \"message\"  - Send message via sockets\n"
+              << "send shmem \"message\"    - Write to shared memory\n"
+              << "status             - Show complete status\n"
+              << "logs <mechanism>   - Show recent logs\n"
+              << "help               - Show this help\n"
+              << "quit / exit        - Exit\n\n";
 }
 
 IPCMechanism stringToMechanism(const std::string& str) {
     if (str == "pipes") return IPCMechanism::PIPES;
     if (str == "sockets") return IPCMechanism::SOCKETS;
     if (str == "shmem" || str == "shared_memory") return IPCMechanism::SHARED_MEMORY;
-    return IPCMechanism::PIPES; // padrão
+    return IPCMechanism::PIPES; // default
 }
 
 void interactiveMode(IPCCoordinator& coordinator) {
     std::string input;
     std::string command, param1, param2;
     
-    std::cout << "\n=== Modo Interativo IPC ===\n"
-              << "Digite 'help' para ver comandos disponíveis\n"
-              << "Digite 'quit' para sair\n\n";
+    std::cout << "\n=== Interactive IPC Mode ===\n"
+              << "Type 'help' to see available commands\n"
+              << "Type 'quit' to exit\n\n";
     
     while (keep_running && std::getline(std::cin, input)) {
         if (input.empty()) continue;
         
-        // Parse simples do comando
+        // Simple command parsing
         std::istringstream iss(input);
         iss >> command;
         
@@ -91,34 +91,34 @@ void interactiveMode(IPCCoordinator& coordinator) {
             printInteractiveHelp();
         }
         else if (command == "status") {
-            std::cout << "Status atual:\n" << coordinator.getStatusJSON() << "\n\n";
+            std::cout << "Current status:\n" << coordinator.getStatusJSON() << "\n\n";
         }
         else if (command == "start") {
             iss >> param1;
             if (param1.empty()) {
-                std::cout << "Uso: start <pipes|sockets|shmem>\n";
+                std::cout << "Usage: start <pipes|sockets|shmem>\n";
                 continue;
             }
             
             IPCMechanism mech = stringToMechanism(param1);
             if (coordinator.startMechanism(mech)) {
-                std::cout << "✓ Mecanismo " << param1 << " iniciado com sucesso\n\n";
+                std::cout << "✓ Mechanism " << param1 << " started successfully\n\n";
             } else {
-                std::cout << "✗ Falha ao iniciar " << param1 << "\n\n";
+                std::cout << "✗ Failed to start " << param1 << "\n\n";
             }
         }
         else if (command == "stop") {
             iss >> param1;
             if (param1.empty()) {
-                std::cout << "Uso: stop <pipes|sockets|shmem>\n";
+                std::cout << "Usage: stop <pipes|sockets|shmem>\n";
                 continue;
             }
             
             IPCMechanism mech = stringToMechanism(param1);
             if (coordinator.stopMechanism(mech)) {
-                std::cout << "✓ Mecanismo " << param1 << " parado com sucesso\n\n";
+                std::cout << "✓ Mechanism " << param1 << " stopped successfully\n\n";
             } else {
-                std::cout << "✗ Falha ao parar " << param1 << "\n\n";
+                std::cout << "✗ Failed to stop " << param1 << "\n\n";
             }
         }
         else if (command == "send") {
@@ -126,11 +126,11 @@ void interactiveMode(IPCCoordinator& coordinator) {
             std::getline(iss, param2); // resto da linha como mensagem
             
             if (param1.empty() || param2.empty()) {
-                std::cout << "Uso: send <mecanismo> <mensagem>\n";
+                std::cout << "Usage: send <mechanism> <message>\n";
                 continue;
             }
             
-            // Remove espaços no início da mensagem
+            // Remove spaces at beginning of message
             size_t start = param2.find_first_not_of(" \t");
             if (start != std::string::npos) {
                 param2 = param2.substr(start);
@@ -143,24 +143,24 @@ void interactiveMode(IPCCoordinator& coordinator) {
             
             IPCMechanism mech = stringToMechanism(param1);
             if (coordinator.sendMessage(mech, param2)) {
-                std::cout << "✓ Mensagem enviada via " << param1 << ": \"" << param2 << "\"\n\n";
+                std::cout << "✓ Message sent via " << param1 << ": \"" << param2 << "\"\n\n";
             } else {
-                std::cout << "✗ Falha ao enviar mensagem via " << param1 << "\n\n";
+                std::cout << "✗ Failed to send message via " << param1 << "\n\n";
             }
         }
         else if (command == "logs") {
             iss >> param1;
             if (param1.empty()) {
-                std::cout << "Uso: logs <pipes|sockets|shmem>\n";
+                std::cout << "Usage: logs <pipes|sockets|shmem>\n";
                 continue;
             }
             
             IPCMechanism mech = stringToMechanism(param1);
-            auto logs = coordinator.getLogs(mech, 20); // últimos 20 logs
+            auto logs = coordinator.getLogs(mech, 20); // last 20 logs
             
-            std::cout << "Logs de " << param1 << ":\n";
+            std::cout << "Logs for " << param1 << ":\n";
             if (logs.empty()) {
-                std::cout << "(nenhum log disponível)\n";
+                std::cout << "(no logs available)\n";
             } else {
                 for (const auto& log : logs) {
                     std::cout << log << "\n";
@@ -169,34 +169,34 @@ void interactiveMode(IPCCoordinator& coordinator) {
             std::cout << "\n";
         }
         else {
-            std::cout << "Comando desconhecido: " << command << "\n";
-            std::cout << "Digite 'help' para ver comandos disponíveis\n\n";
+            std::cout << "Unknown command: " << command << "\n";
+            std::cout << "Type 'help' to see available commands\n\n";
         }
     }
 }
 
 void serverMode(IPCCoordinator& coordinator, int http_port) {
-    std::cout << "Iniciando modo servidor web integrado...\n";
+    std::cout << "Starting integrated web server mode...\n";
     
-    // Inicia todos os mecanismos
+    // Start all mechanisms
     coordinator.startMechanism(IPCMechanism::PIPES);
     coordinator.startMechanism(IPCMechanism::SOCKETS);  
     coordinator.startMechanism(IPCMechanism::SHARED_MEMORY);
     
-    std::cout << "✓ Mecanismos IPC iniciados\n";
+    std::cout << "✓ IPC mechanisms started\n";
     
-    // Cria e inicia o servidor HTTP
+    // Create and start HTTP server
     HTTPServer server(http_port);
     server.setIPCCoordinator(std::shared_ptr<IPCCoordinator>(&coordinator, [](IPCCoordinator*) {}));
     
-    // Configura path para arquivos estáticos (frontend)
-    // Tenta caminhos relativos ao local do executável/build para portabilidade
+    // Configure path for static files (frontend)
+    // Try paths relative to executable/build location for portability
     {
         std::string staticPath = "./frontend";
         try {
             namespace fs = std::filesystem;
             const std::vector<std::string> candidates = {
-                "../../frontend", // típico: build/bin -> repo/frontend
+                "../../frontend", // typical: build/bin -> repo/frontend
                 "../frontend",
                 "./frontend"
             };
@@ -208,85 +208,85 @@ void serverMode(IPCCoordinator& coordinator, int http_port) {
                 }
             }
         } catch (...) {
-            // fallback para ./frontend
+            // fallback to ./frontend
         }
         server.setStaticPath(staticPath);
     }
     
-    // Inicia o servidor
+    // Start server
     if (!server.start()) {
-        // Porta ocupada? tenta próximas 10 portas
+        // Port busy? try next 10 ports
         bool started = false;
         for (int p = http_port + 1; p <= http_port + 10; ++p) {
             server.setPort(p);
             if (server.start()) { started = true; http_port = p; break; }
         }
         if (!started) {
-            std::cerr << "❌ Erro ao iniciar servidor HTTP! Porta ocupada e tentativas de fallback falharam.\n";
-            std::cerr << "Sugestão: usar --port <n> ou liberar a porta com 'lsof -i :" << http_port << "'" << std::endl;
+            std::cerr << "❌ Error starting HTTP server! Port busy and fallback attempts failed.\n";
+            std::cerr << "Suggestion: use --port <n> or free the port with 'lsof -i :" << http_port << "'" << std::endl;
             return;
         }
     }
     
-    std::cout << "✓ Servidor HTTP iniciado na porta " << http_port << "\n";
-    std::cout << "✓ Acesse: http://localhost:" << http_port << "/\n";
-    std::cout << "Status inicial:\n" << coordinator.getStatusJSON() << "\n\n";
+    std::cout << "✓ HTTP server started on port " << http_port << "\n";
+    std::cout << "✓ Access: http://localhost:" << http_port << "/\n";
+    std::cout << "Initial status:\n" << coordinator.getStatusJSON() << "\n\n";
     
-    // Loop principal do servidor
+    // Main server loop
     while (keep_running && coordinator.isRunning()) {
         coordinator.waitForAllChildren();
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         
-        // Status a cada 30 segundos
+        // Status every 30 seconds
         static int counter = 0;
         if (++counter >= 300) {
             auto now = std::chrono::system_clock::now();
             auto time_t = std::chrono::system_clock::to_time_t(now);
-            std::cout << "Status servidor [" << std::ctime(&time_t) << "]:\n";
+            std::cout << "Server status [" << std::ctime(&time_t) << "]:\n";
             std::cout << coordinator.getStatusJSON() << "\n\n";
             counter = 0;
         }
     }
     
-    std::cout << "Parando servidor HTTP...\n";
+    std::cout << "Stopping HTTP server...\n";
     server.stop();
-    std::cout << "Servidor encerrado.\n";
+    std::cout << "Server stopped.\n";
 }
 
 void daemonMode(IPCCoordinator& coordinator) {
-    std::cout << "Iniciando modo daemon...\n";
+    std::cout << "Starting daemon mode...\n";
     
-    // Inicia todos os mecanismos
+    // Start all mechanisms
     coordinator.startMechanism(IPCMechanism::PIPES);
     coordinator.startMechanism(IPCMechanism::SOCKETS);  
     coordinator.startMechanism(IPCMechanism::SHARED_MEMORY);
     
-    std::cout << "Status inicial:\n" << coordinator.getStatusJSON() << "\n\n";
+    std::cout << "Initial status:\n" << coordinator.getStatusJSON() << "\n\n";
     
-    // Loop principal do daemon
+    // Main daemon loop
     while (keep_running && coordinator.isRunning()) {
-        // Aguarda processos filhos terminarem se necessário
+        // Wait for child processes to finish if necessary
         coordinator.waitForAllChildren();
         
-        // Pequena pausa pra não consumir 100% da CPU
+        // Small pause to not consume 100% CPU
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         
-        // A cada 30 segundos, imprime status
+        // Every 30 seconds, print status
         static int counter = 0;
         if (++counter >= 300) { // 300 * 100ms = 30s
             auto now = std::chrono::system_clock::now();
             auto time_t = std::chrono::system_clock::to_time_t(now);
-            std::cout << "Status daemon [" << std::ctime(&time_t) << "]:\n";
+            std::cout << "Daemon status [" << std::ctime(&time_t) << "]:\n";
             std::cout << coordinator.getStatusJSON() << "\n\n";
             counter = 0;
         }
     }
     
-    std::cout << "Daemon encerrando...\n";
+    std::cout << "Daemon shutting down...\n";
 }
 
 int main(int argc, char* argv[]) {
-    // Configuração inicial
+    // Initial configuration
     signal(SIGINT, signalHandler);
     signal(SIGTERM, signalHandler);
     
@@ -296,7 +296,7 @@ int main(int argc, char* argv[]) {
     std::string log_file = "";
     int http_port = 9000;
     
-    // Parse de argumentos da linha de comando
+    // Command line argument parsing
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
         
@@ -323,11 +323,11 @@ int main(int argc, char* argv[]) {
             if (i + 1 < argc) {
                 http_port = std::atoi(argv[++i]);
                 if (http_port <= 0 || http_port > 65535) {
-                    std::cerr << "Erro: porta inválida: " << http_port << "\n";
+                    std::cerr << "Error: invalid port: " << http_port << "\n";
                     return 1;
                 }
             } else {
-                std::cerr << "Erro: opção -p requer número da porta\n";
+                std::cerr << "Error: option -p requires port number\n";
                 return 1;
             }
         }
@@ -335,18 +335,18 @@ int main(int argc, char* argv[]) {
             if (i + 1 < argc) {
                 log_file = argv[++i];
             } else {
-                std::cerr << "Erro: opção -l requer nome do arquivo\n";
+                std::cerr << "Error: option -l requires filename\n";
                 return 1;
             }
         }
         else {
-            std::cerr << "Opção desconhecida: " << arg << "\n";
-            std::cerr << "Use -h para ver opções disponíveis\n";
+            std::cerr << "Unknown option: " << arg << "\n";
+            std::cerr << "Use -h to see available options\n";
             return 1;
         }
     }
     
-    // Configuração do logger
+    // Logger configuration
     Logger& logger = Logger::getInstance();
     
     if (verbose) {
@@ -357,13 +357,13 @@ int main(int argc, char* argv[]) {
     
     if (!log_file.empty()) {
         if (!logger.setLogFile(log_file)) {
-            std::cerr << "Erro ao configurar arquivo de log: " << log_file << "\n";
+            std::cerr << "Error configuring log file: " << log_file << "\n";
             return 1;
         }
     }
     
-    std::cout << "=== Sistema de Comunicação Inter-Processo ===\n";
-    std::cout << "Modo: " << (interactive_mode ? "Interativo" : "Daemon") << "\n";
+    std::cout << "=== Inter-Process Communication System ===\n";
+    std::cout << "Mode: " << (interactive_mode ? "Interactive" : "Daemon") << "\n";
     std::cout << "Log level: " << (verbose ? "DEBUG" : "INFO") << "\n";
     std::cout << "HTTP port: " << http_port << "\n";
     if (!log_file.empty()) {
@@ -372,17 +372,17 @@ int main(int argc, char* argv[]) {
     std::cout << "\n";
     
     try {
-        // Inicialização do coordenador
+        // Coordinator initialization
         IPCCoordinator coordinator;
         
         if (!coordinator.initialize()) {
-            std::cerr << "Erro: Falha ao inicializar coordenador IPC\n";
+            std::cerr << "Error: Failed to initialize IPC coordinator\n";
             return 1;
         }
         
-        std::cout << "✓ Coordenador IPC inicializado com sucesso\n\n";
+        std::cout << "✓ IPC coordinator initialized successfully\n\n";
         
-        // Execução baseada no modo
+        // Mode-based execution
         if (interactive_mode) {
             interactiveMode(coordinator);
         } else if (server_mode) {
@@ -391,14 +391,14 @@ int main(int argc, char* argv[]) {
             daemonMode(coordinator);
         }
         
-        std::cout << "Encerrando sistema...\n";
+        std::cout << "Shutting down system...\n";
         coordinator.shutdown();
         
     } catch (const std::exception& e) {
-        std::cerr << "Erro fatal: " << e.what() << std::endl;
+        std::cerr << "Fatal error: " << e.what() << std::endl;
         return 1;
     }
     
-    std::cout << "Sistema IPC encerrado.\n";
+    std::cout << "IPC system terminated.\n";
     return 0;
 }

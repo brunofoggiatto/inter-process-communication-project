@@ -1,6 +1,6 @@
 /**
  * @file test_full_flow.cpp
- * @brief Testes de integração para fluxo completo do sistema IPC
+ * @brief Integration tests for complete IPC system flow
  */
 
 #include <gtest/gtest.h>
@@ -98,7 +98,7 @@ TEST_F(FullFlowIntegrationTest, MessageSendingFlow) {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     
     // 2. Envia mensagem
-    std::string test_message = "Teste de integração - mensagem completa";
+    std::string test_message = "Integration test - complete message";
     bool sent = coordinator->sendMessage(IPCMechanism::SHARED_MEMORY, test_message);
     EXPECT_TRUE(sent);
     
@@ -194,7 +194,7 @@ TEST_F(FullFlowIntegrationTest, CompleteLifecycle) {
     EXPECT_FALSE(final_status.is_active);
 }
 
-// Teste de integração HTTP Server + IPC Coordinator
+// Integration test HTTP Server + IPC Coordinator
 TEST_F(FullFlowIntegrationTest, HTTPServerIntegration) {
     // Verifica que servidor HTTP está conectado ao coordinator
     EXPECT_TRUE(http_server->isRunning());
