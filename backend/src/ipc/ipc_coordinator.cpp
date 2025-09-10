@@ -220,22 +220,22 @@ bool IPCCoordinator::startMechanism(IPCMechanism mechanism) {
         if (success) {
             mechanism_status_[mechanism] = true;
             logMechanismActivity(mechanism, "started");
-            logger_.info(mech_name + " iniciado com sucesso", "COORDINATOR");
+            logger_.info(mech_name + " started successfully", "COORDINATOR");
         } else {
-            logger_.error("Falha ao iniciar " + mech_name, "COORDINATOR");
+            logger_.error("Failed to start " + mech_name, "COORDINATOR");
         }
         
         return success;
         
     } catch (const std::exception& e) {
-        logger_.error("Exceção ao iniciar " + mech_name + ": " + e.what(), "COORDINATOR");
+        logger_.error("Exception starting " + mech_name + ": " + e.what(), "COORDINATOR");
         return false;
     }
 }
 
 bool IPCCoordinator::stopMechanism(IPCMechanism mechanism) {
     std::string mech_name = mechanismToString(mechanism);
-    logger_.info("Parando mecanismo: " + mech_name, "COORDINATOR");
+    logger_.info("Stopping mechanism: " + mech_name, "COORDINATOR");
     
     mechanism_status_[mechanism] = false;
     

@@ -1,6 +1,6 @@
 /**
  * @file test_shmem.cpp
- * @brief Testes unitários para SharedMemoryManager
+ * @brief Unit tests for SharedMemoryManager
  */
 
 #include <gtest/gtest.h>
@@ -24,7 +24,7 @@ protected:
     std::unique_ptr<SharedMemoryManager> manager;
 };
 
-// Teste básico de criação e destruição
+// Basic test for creation and destruction
 TEST_F(SharedMemoryManagerTest, CreateAndDestroy) {
     EXPECT_TRUE(manager->createSharedMemory());
     EXPECT_TRUE(manager->isActive());
@@ -33,31 +33,31 @@ TEST_F(SharedMemoryManagerTest, CreateAndDestroy) {
     EXPECT_FALSE(manager->isActive());
 }
 
-// Teste de escrita e leitura
+// Write and read test
 TEST_F(SharedMemoryManagerTest, WriteAndRead) {
     ASSERT_TRUE(manager->createSharedMemory());
     
-    std::string test_message = "Teste de mensagem na memória compartilhada";
+    std::string test_message = "Test message in shared memory";
     EXPECT_TRUE(manager->writeMessage(test_message));
     
     std::string read_message = manager->readMessage();
     EXPECT_EQ(test_message, read_message);
 }
 
-// Teste de sincronização básica
+// Basic synchronization test
 TEST_F(SharedMemoryManagerTest, BasicLocking) {
     ASSERT_TRUE(manager->createSharedMemory());
     
-    // Teste de lock para escrita
+    // Test write lock
     EXPECT_TRUE(manager->lockForWrite());
     EXPECT_TRUE(manager->unlock());
     
-    // Teste de lock para leitura
+    // Test read lock
     EXPECT_TRUE(manager->lockForRead());
     EXPECT_TRUE(manager->unlock());
 }
 
-// Teste de operações JSON
+// JSON operations test
 TEST_F(SharedMemoryManagerTest, JSONOperations) {
     ASSERT_TRUE(manager->createSharedMemory());
     
@@ -74,15 +74,15 @@ TEST_F(SharedMemoryManagerTest, JSONOperations) {
     EXPECT_NE(json.find("shared_memory"), std::string::npos);
 }
 
-// Teste de múltiplas operações
+// Multiple operations test
 TEST_F(SharedMemoryManagerTest, MultipleOperations) {
     ASSERT_TRUE(manager->createSharedMemory());
     
-    // Escreve várias mensagens
+    // Write multiple messages
     std::vector<std::string> messages = {
-        "Primeira mensagem",
-        "Segunda mensagem", 
-        "Terceira mensagem"
+        "First message",
+        "Second message", 
+        "Third message"
     };
     
     for (const auto& msg : messages) {
@@ -92,7 +92,7 @@ TEST_F(SharedMemoryManagerTest, MultipleOperations) {
     }
 }
 
-// Teste de status e monitoramento
+// Status and monitoring test
 TEST_F(SharedMemoryManagerTest, StatusMonitoring) {
     EXPECT_FALSE(manager->isActive());
     
@@ -102,33 +102,33 @@ TEST_F(SharedMemoryManagerTest, StatusMonitoring) {
     key_t key = manager->getKey();
     EXPECT_NE(key, -1);
     
-    // Testa getLastOperation antes de qualquer operação
+    // Test getLastOperation before any operation
     auto initial_op = manager->getLastOperation();
     EXPECT_EQ(initial_op.operation, "create");
     EXPECT_EQ(initial_op.status, "success");
 }
 
-// Teste de erro - tentativa de usar sem criar
+// Error test - try to use without creating
 TEST_F(SharedMemoryManagerTest, ErrorHandling) {
-    // Tenta escrever sem criar primeiro
+    // Try to write without creating first
     EXPECT_FALSE(manager->writeMessage("test"));
     
-    // Tenta ler sem criar primeiro  
+    // Try to read without creating first  
     std::string result = manager->readMessage();
     EXPECT_TRUE(result.empty());
     
-    // Verifica que última operação tem erro
+    // Verify last operation has error
     auto last_op = manager->getLastOperation();
     EXPECT_EQ(last_op.status, "error");
 }
 
-// Teste de processo filho (se aplicável)
+// Child process test (if applicable)
 TEST_F(SharedMemoryManagerTest, ProcessManagement) {
     ASSERT_TRUE(manager->createSharedMemory());
     
-    // Por padrão, deve ser o processo pai
+    // By default, should be the parent process
     EXPECT_TRUE(manager->isParent());
     
-    // Não testamos fork aqui pois pode complicar os testes unitários
-    // Isso seria melhor testado nos testes de integração
+    // We don't test fork here as it can complicate unit tests
+    // This would be better tested in integration tests
 }
