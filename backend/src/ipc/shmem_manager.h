@@ -1,117 +1,154 @@
 /**
  * @file shmem_manager.h
- * @brief Shared memory manager for IPC communication between processes
+ * @brief Gerenciador de memória compartilhada para comunicação IPC entre processos
+ * 
+ * Este arquivo implementa comunicação via memória compartilhada (System V IPC).
+ * É o mecanismo IPC MAIS RÁPIDO para transferir grandes volumes de dados,
+ * pois os processos acessam diretamente a mesma região de memória física.
+ * 
+ * VANTAGENS DA MEMÓRIA COMPARTILHADA:
+ * - MAIS RÁPIDA: acesso direto à memória, sem cópias
+ * - GRANDE CAPACIDADE: pode compartilhar megabytes de dados
+ * - PERSISTENTE: dados permanecem mesmo se processos morrem
+ * - MÚLTIPLOS ACESSOS: vários processos podem acessar simultaneamente
+ * 
+ * DESVANTAGENS:
+ * - COMPLEXA: requer sincronização manual com semáforos
+ * - SEM PROTEÇÃO: não há controle automático de concorrência
+ * - SISTEMA V IPC: APIs mais antigas e complexas
  */
 
-#pragma once
+#pragma once  // Garante inclusão única
 
-#include <string>
-#include <vector>
-#include <sys/ipc.h>
-#include <sys/shm.h>
-#include <sys/sem.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include "../common/logger.h"
+#include <string>        // Para manipulação de strings
+#include <vector>        // Para arrays dinâmicos
+#include <sys/ipc.h>     // Para constantes IPC (IPC_PRIVATE, etc)
+#include <sys/shm.h>     // Para shmget(), shmat(), shmctl() - memória compartilhada
+#include <sys/sem.h>     // Para semget(), semop() - semáforos para sincronização
+#include <unistd.h>      // Para fork(), getpid()
+#include <sys/wait.h>    // Para waitpid() - esperar processo filho
+#include "../common/logger.h"  // Sistema de logging
 
 namespace ipc_project {
 
 /**
- * @brief Data structure to store shared memory information for frontend display
+ * Estrutura que armazena informações da memória compartilhada para exibição no frontend
  * 
- * This structure contains all the necessary information about shared memory
- * operations and status that needs to be sent to the web frontend for visualization.
+ * Esta estrutura contém todas as informações necessárias sobre operações e status
+ * da memória compartilhada que precisam ser enviadas para o dashboard web.
+ * 
+ * É usada para monitoramento em tempo real de:
+ * - Conteúdo atual da memória
+ * - Estado de sincronização (quem tem acesso)
+ * - Processos em espera
+ * - Estatísticas de performance
  */
 struct SharedMemoryData {
-    std::string content;                    // Current content stored in shared memory
-    size_t size;                           // Size of the shared memory segment in bytes
-    std::string sync_state;                // Current synchronization state: "locked" or "unlocked" 
-    std::vector<pid_t> waiting_processes;  // List of process IDs waiting for memory access
-    std::string last_modified;             // ISO timestamp of last modification
-    std::string operation;                 // Last operation performed: "create", "write", "read", "destroy"
-    pid_t process_id;                      // Process ID that performed the operation
-    std::string status;                    // Result status: "success" or "error"
-    std::string error_message;             // Human-readable error message if operation failed
-    double time_ms;                        // Time taken for the operation in milliseconds
+    std::string content;                    // Conteúdo atual armazenado na memória compartilhada
+    size_t size;                           // Tamanho do segmento de memória em bytes
+    std::string sync_state;                // Estado atual de sincronização: "locked" ou "unlocked"
+    std::vector<pid_t> waiting_processes;  // Lista de PIDs de processos esperando acesso
+    std::string last_modified;             // Timestamp ISO da última modificação
+    std::string operation;                 // Última operação realizada: "create", "write", "read", "destroy"
+    pid_t process_id;                      // PID do processo que realizou a operação
+    std::string status;                    // Status do resultado: "success" ou "error"
+    std::string error_message;             // Mensagem de erro legível se a operação falhou
+    double time_ms;                        // Tempo gasto na operação em milissegundos
     
-    std::string toJSON() const;            // Serialize this data to JSON format
-    std::string getCurrentTimestamp() const; // Get current time in ISO format
+    std::string toJSON() const;            // Serializa estes dados para formato JSON
+    std::string getCurrentTimestamp() const; // Obtém tempo atual em formato ISO
 };
 
 /**
- * @brief Internal structure that resides in the shared memory segment
+ * Estrutura interna que reside no segmento de memória compartilhada
  * 
- * This is the actual data structure that gets mapped into shared memory
- * and is accessible by all processes. It contains both the user data
- * and synchronization metadata.
+ * Esta é a estrutura de dados real que fica mapeada na memória compartilhada
+ * e é acessível por todos os processos. Contém tanto os dados do usuário
+ * quanto metadados de sincronização.
+ * 
+ * LAYOUT DA MEMÓRIA:
+ * [dados do usuário][metadados de controle][informações de sincronização]
+ * 
+ * Esta estrutura fica fisicamente na memória compartilhada, por isso
+ * todos os processos vêem exatamente a mesma cópia.
  */
 struct SharedMemorySegment {
-    char data[1024];                       // User data storage (null-terminated string)
-    pid_t last_writer;                     // Process ID of the last writer
-    time_t last_modified;                  // Unix timestamp of last modification
-    int reader_count;                      // Number of processes currently reading
-    bool is_writing;                       // True if a writer currently holds the lock
+    char data[1024];                       // Armazenamento dos dados do usuário (string terminada por null)
+    pid_t last_writer;                     // PID do processo que escreveu por último
+    time_t last_modified;                  // Timestamp Unix da última modificação
+    int reader_count;                      // Número de processos atualmente lendo
+    bool is_writing;                       // true se um escritor possui o lock atualmente
 };
 
 /**
- * @brief High-level shared memory manager with reader-writer synchronization
+ * Gerenciador de memória compartilhada de alto nível com sincronização leitor-escritor
  * 
- * This class implements a robust shared memory system using System V IPC
- * primitives (shmget, shmat) combined with semaphores for thread-safe
- * reader-writer access patterns. It automatically handles:
+ * Esta classe implementa um sistema robusto de memória compartilhada usando primitivas
+ * System V IPC (shmget, shmat) combinado com semáforos para padrões de acesso
+ * leitor-escritor thread-safe. Trata automaticamente:
  * 
- * - Memory segment creation and attachment
- * - Semaphore-based synchronization (readers-writers problem)
- * - Process cleanup and resource management
- * - Error handling and recovery
- * - Cross-process communication
+ * - Criação e anexação de segmentos de memória
+ * - Sincronização baseada em semáforos (problema leitores-escritores)
+ * - Limpeza de processos e gerenciamento de recursos
+ * - Tratamento e recuperação de erros
+ * - Comunicação entre processos
  * 
- * The synchronization follows the classic readers-writers pattern:
- * - Multiple readers can access simultaneously
- * - Writers get exclusive access
- * - Readers are blocked while a writer is active
- * - Writers are blocked while any readers are active
+ * PROBLEMA CLÁSSICO LEITORES-ESCRITORES:
+ * A sincronização segue o padrão clássico leitores-escritores:
+ * - MÚLTIPLOS LEITORES podem acessar simultaneamente
+ * - ESCRITORES obtêm acesso EXCLUSIVO
+ * - Leitores são BLOQUEADOS enquanto um escritor está ativo
+ * - Escritores são BLOQUEADOS enquanto há leitores ativos
+ * 
+ * VANTAGENS DESTA IMPLEMENTAÇÃO:
+ * - Sem starvation: escritores eventualment conseguem acesso
+ * - Performance: múltiplos leitores simultâneos
+ * - Robustez: limpeza automática de recursos
  */
 class SharedMemoryManager {
 public:
-    SharedMemoryManager();
-    ~SharedMemoryManager();
+    SharedMemoryManager();   // Construtor - inicializa variáveis
+    ~SharedMemoryManager();  // Destrutor - limpa recursos automaticamente
 
-    // Basic shared memory operations
-    bool createSharedMemory(key_t key = IPC_PRIVATE);  // Create segment
-    bool attachToMemory(key_t key);                    // Attach to existing segment
-    bool writeMessage(const std::string& message);     // Write to memory
-    std::string readMessage();                         // Read from memory
-    void destroySharedMemory();                        // Remove segment
+    // ========== Operações Básicas de Memória Compartilhada ==========
+    bool createSharedMemory(key_t key = IPC_PRIVATE);  // Cria novo segmento de memória
+    bool attachToMemory(key_t key);                    // Anexa a segmento existente
+    bool writeMessage(const std::string& message);     // Escreve mensagem na memória
+    std::string readMessage();                         // Lê mensagem da memória
+    void destroySharedMemory();                        // Remove segmento completamente
     
-    // Synchronization operations
-    bool lockForWrite();                               // Lock for exclusive write
-    bool lockForRead();                                // Lock for shared read
-    bool unlock();                                     // Release lock
+    // ========== Operações de Sincronização (Leitores-Escritores) ==========
+    bool lockForWrite();                               // Lock exclusivo para escrita
+    bool lockForRead();                                // Lock compartilhado para leitura
+    bool unlock();                                     // Libera qualquer lock
     
-    // Monitoring and status
-    SharedMemoryData getLastOperation() const;         // Last operation data
-    void printJSON() const;                            // Print JSON to stdout
-    bool isActive() const;                             // If active
-    key_t getKey() const;                              // Segment key
+    // ========== Monitoramento e Status ==========
+    SharedMemoryData getLastOperation() const;         // Dados da última operação
+    void printJSON() const;                            // Imprime JSON no stdout
+    bool isActive() const;                             // Se está ativo
+    key_t getKey() const;                              // Chave do segmento
     
-    // Multi-process operations
-    bool forkAndTest();                                // Create child process for testing
-    bool isParent() const;                             // If this is the parent process
-    void waitForChild();                               // Wait for child process to finish
+    // ========== Operações Multi-Processo ==========
+    bool forkAndTest();                                // Cria processo filho para testes
+    bool isParent() const;                             // Se este é o processo pai
+    void waitForChild();                               // Espera processo filho terminar
 
 private:
-    int shmid_;                            // Shared memory segment ID
-    int semid_;                            // Semaphore set ID
-    SharedMemorySegment* shared_segment_;  // Pointer to mapped segment
-    key_t shm_key_;                        // Shared memory key
-    bool is_creator_;                      // If this process created the segment
-    bool is_attached_;                     // If attached to segment
-    bool is_parent_;                       // If this is the parent process
-    pid_t child_pid_;                      // Child process PID
+    // ========== Identificadores System V IPC ==========
+    int shmid_;                            // ID do segmento de memória compartilhada
+    int semid_;                            // ID do conjunto de semáforos
+    SharedMemorySegment* shared_segment_;  // Ponteiro para segmento mapeado
+    key_t shm_key_;                        // Chave da memória compartilhada
     
-    SharedMemoryData last_operation_;      // Last operation data
-    Logger& logger_;                       // Logger for debugging
+    // ========== Estado do Processo ==========
+    bool is_creator_;                      // Se este processo criou o segmento
+    bool is_attached_;                     // Se está anexado ao segmento
+    bool is_parent_;                       // Se este é o processo pai
+    pid_t child_pid_;                      // PID do processo filho
+    
+    // ========== Monitoramento ==========
+    SharedMemoryData last_operation_;      // Dados da última operação
+    Logger& logger_;                       // Logger para debug
     
     /**
      * @brief Semaphore indices for the semaphore set

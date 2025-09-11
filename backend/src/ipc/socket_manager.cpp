@@ -1,22 +1,32 @@
 /**
  * @file socket_manager.cpp
- * @brief Implementacao de sockets locais para comunicacao IPC
+ * @brief Implementação completa de Unix Domain Sockets para comunicação IPC bidirecional
+ * 
+ * Este arquivo implementa:
+ * - Criação de socketpair() + fork() para comunicação bidirecional
+ * - Envio/recepção de mensagens em ambas as direções
+ * - Tratamento de erros e reconexão automática
+ * - Serialização JSON para dashboard web
+ * - Loop de monitoramento do processo filho
  */
 
-#include "socket_manager.h"
-#include <iostream>
-#include <cstring>
-#include <errno.h>
-#include <chrono>
-#include <sstream>
-#include <iomanip>
-#include <thread>
+#include "socket_manager.h"  // Header da classe
+#include <iostream>          // Para I/O padrão
+#include <cstring>           // Para strerror()
+#include <errno.h>           // Para errno
+#include <chrono>            // Para timestamps
+#include <sstream>           // Para JSON building
+#include <iomanip>           // Para formatação de tempo
+#include <thread>            // Para sleep()
 
 namespace ipc_project {
 
-// Converte dados da operação atual pro formato JSON seguindo especificação do enunciado
+/**
+ * Serializa dados do socket para JSON (monitoramento web)
+ * @return String JSON formatada com dados da última operação
+ */
 std::string SocketData::toJSON() const {
-    // Gera timestamp ISO-8601
+    // Gera timestamp ISO-8601 padronizado
     auto now = std::chrono::system_clock::now();
     auto time_t = std::chrono::system_clock::to_time_t(now);
     auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(

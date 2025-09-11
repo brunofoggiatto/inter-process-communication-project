@@ -1,19 +1,36 @@
 /**
  * @file shmem_manager.cpp 
- * @brief Implementation of the shared memory manager
+ * @brief Implementação completa do gerenciador de memória compartilhada
+ * 
+ * Este arquivo implementa todas as operações de memória compartilhada:
+ * - Criação/destruição de segmentos System V IPC
+ * - Sincronização leitor-escritor com semáforos  
+ * - Operações thread-safe de leitura/escrita
+ * - Serialização JSON para monitoramento web
+ * - Tratamento robusto de erros e limpeza de recursos
+ * 
+ * SINCRONIZAÇÃO IMPLEMENTADA:
+ * - Problema clássico leitores-escritores
+ * - Múltiplos leitores simultâneos
+ * - Escritores com acesso exclusivo
+ * - Prevenção de starvation
  */
 
-#include "shmem_manager.h"
-#include <iostream>
-#include <cstring>
-#include <chrono>
-#include <format>
-#include <sys/errno.h>
-#include <signal.h>
+#include "shmem_manager.h"  // Header da classe
+#include <iostream>         // Para I/O padrão
+#include <cstring>          // Para funções de string
+#include <chrono>           // Para timestamps
+#include <format>           // Para formatação de strings (C++20)
+#include <sys/errno.h>      // Para códigos de erro do sistema
+#include <signal.h>         // Para tratamento de sinais
 
 namespace ipc_project {
 
-// Implementation of SharedMemoryData::toJSON()
+/**
+ * Implementação da serialização JSON para SharedMemoryData
+ * Converte estrutura interna para formato JSON para dashboard web
+ * @return String JSON formatada com todos os dados
+ */
 std::string SharedMemoryData::toJSON() const {
     std::string waiting_pids = "[";
     for (size_t i = 0; i < waiting_processes.size(); ++i) {

@@ -1,29 +1,43 @@
 /**
  * @file http_server.h
- * @brief Servidor HTTP para interface web do sistema IPC
+ * @brief Servidor HTTP completo para interface web do sistema IPC
+ * 
+ * Este arquivo implementa um servidor HTTP completo que fornece:
+ * - API REST para controlar mecanismos IPC remotamente
+ * - Servidor de arquivos estáticos para o frontend web
+ * - WebSocket server para logs em tempo real
+ * - Sistema de roteamento e middleware
+ * - Suporte a CORS para desenvolvimento
+ * 
+ * ARQUITETURA DO SERVIDOR WEB:
+ * Frontend (React/HTML) <-> HTTP API <-> IPC Coordinator <-> Mecanismos IPC
+ *                     <-> WebSocket <-> Log Streaming
  */
 
-#pragma once
+#pragma once  // Garante inclusão única
 
-#include <string>
-#include <map>
-#include <memory>
-#include <thread>
-#include <atomic>
-#include <functional>
-#include <vector>
-#include "../ipc/ipc_coordinator.h"
-#include "../common/logger.h"
+#include <string>        // Para manipulação de strings
+#include <map>           // Para headers HTTP e parâmetros
+#include <memory>        // Para smart pointers
+#include <thread>        // Para servidor multi-thread
+#include <atomic>        // Para variáveis thread-safe
+#include <functional>    // Para std::function (callbacks)
+#include <vector>        // Para listas dinâmicas
+#include "../ipc/ipc_coordinator.h"  // Interface com sistema IPC
+#include "../common/logger.h"        // Sistema de logging
 
 namespace ipc_project {
 
-// Estrutura pra requisições HTTP
+/**
+ * Estrutura que representa uma requisição HTTP recebida
+ * Contém todos os dados necessários para processar uma requisição web
+ */
 struct HTTPRequest {
-    std::string method;          // GET, POST, PUT, DELETE
-    std::string path;            // /ipc/status, /ipc/start/pipes, etc
-    std::string body;            // corpo da requisição (JSON)
-    std::map<std::string, std::string> headers;  // cabeçalhos
-    std::map<std::string, std::string> params;   // parâmetros da URL
+    std::string method;          // Método HTTP: GET, POST, PUT, DELETE, OPTIONS
+    std::string path;            // Caminho: /ipc/status, /ipc/start/pipes, etc
+    std::string body;            // Corpo da requisição (geralmente JSON para APIs)
+    std::map<std::string, std::string> headers;  // Cabeçalhos HTTP (Content-Type, etc)
+    std::map<std::string, std::string> params;   // Parâmetros da URL (?param=value)
     
     std::string getParam(const std::string& key, const std::string& default_val = "") const;
 };

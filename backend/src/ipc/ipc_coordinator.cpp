@@ -1,22 +1,46 @@
 /**
  * @file ipc_coordinator.cpp
- * @brief Implementação do coordenador central para todos os mecanismos IPC
+ * @brief Implementação completa do coordenador central para todos os mecanismos IPC
+ * 
+ * Este é o "cérebro" do sistema IPC que implementa:
+ * - Gerenciamento integrado de pipes, sockets e memória compartilhada
+ * - Interface unificada para controle de todos os mecanismos
+ * - Serialização JSON para dashboard web
+ * - Tratamento de sinais do sistema (CTRL+C, SIGTERM)
+ * - Monitoramento em tempo real de status e performance
+ * - Thread safety completa para uso em servidor web
+ * 
+ * FLUXO DE DADOS:
+ * WebUI → HTTP Server → IPCCoordinator → [Pipe|Socket|Shmem]Manager → Sistema IPC
+ * 
+ * RESPONSABILIDADES:
+ * - Abstrair complexidade dos mecanismos individuais
+ * - Fornecer interface consistente para todos os tipos IPC
+ * - Gerenciar ciclo de vida de processos filhos
+ * - Agregar estatísticas e status de monitoramento
  */
 
-#include "ipc_coordinator.h"
-#include <chrono>
-#include <sstream>
-#include <iomanip>
-#include <algorithm>
-#include <csignal>
+#include "ipc_coordinator.h"  // Header da classe
+#include <chrono>             // Para timestamps e medição de tempo
+#include <sstream>            // Para construção de strings JSON
+#include <iomanip>            // Para formatação de timestamps
+#include <algorithm>          // Para operações em containers
+#include <csignal>            // Para tratamento de sinais (SIGINT, SIGTERM)
 
 namespace ipc_project {
 
-// Instância estática pro signal handler
+// Instância estática para o signal handler poder acessar o coordenador
 IPCCoordinator* IPCCoordinator::instance_ = nullptr;
 
-// Implementação das estruturas
+// ============================================================================
+// IMPLEMENTAÇÃO DAS ESTRUTURAS DE DADOS (JSON Serialization)
+// ============================================================================
 
+/**
+ * Serializa status de um mecanismo individual para JSON
+ * Usado pelo dashboard web para exibir estado de pipes/sockets/shmem
+ * @return String JSON com todas as informações do mecanismo
+ */
 std::string MechanismStatus::toJSON() const {
     std::stringstream json;
     json << "{"

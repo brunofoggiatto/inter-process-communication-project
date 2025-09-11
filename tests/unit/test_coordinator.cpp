@@ -1,29 +1,56 @@
 /**
  * @file test_coordinator.cpp
- * @brief Testes unitários para IPCCoordinator
+ * @brief Testes unitários completos para o IPCCoordinator
+ * 
+ * Este arquivo testa todas as funcionalidades principais do coordenador IPC:
+ * - Inicialização e shutdown do sistema
+ * - Start/stop de mecanismos individuais (pipes, sockets, shmem)
+ * - Envio e recepção de mensagens via todos os mecanismos
+ * - Status e monitoramento em tempo real
+ * - Tratamento de erros e recuperação
+ * - Interface JSON para o servidor web
+ * 
+ * ESTRUTURA DOS TESTES:
+ * - Setup/TearDown automático para cada teste
+ * - Fixture class para reutilizar código
+ * - Testes isolados e independentes
+ * - Verificações de estado e funcionalidade
  */
 
-#include <gtest/gtest.h>
-#include "ipc/ipc_coordinator.h"
-#include <thread>
-#include <chrono>
+#include <gtest/gtest.h>      // Framework de testes do Google
+#include "ipc/ipc_coordinator.h"  // Classe a ser testada
+#include <thread>             // Para sleep() nos testes
+#include <chrono>             // Para medição de tempo
 
 using namespace ipc_project;
 
+/**
+ * Classe fixture para testes do IPCCoordinator
+ * Fornece setup/cleanup automático para cada teste
+ * Garante que cada teste comece com um coordenador limpo
+ */
 class IPCCoordinatorTest : public ::testing::Test {
 protected:
+    /**
+     * Executado ANTES de cada teste individual
+     * Cria uma nova instância do coordenador
+     */
     void SetUp() override {
         coordinator = std::make_unique<IPCCoordinator>();
     }
     
+    /**
+     * Executado DEPOIS de cada teste individual
+     * Garante limpeza completa dos recursos
+     */
     void TearDown() override {
         if (coordinator && coordinator->isRunning()) {
-            coordinator->shutdown();
+            coordinator->shutdown();  // Para tudo graciosamente
         }
-        coordinator.reset();
+        coordinator.reset();  // Limpa o smart pointer
     }
     
-    std::unique_ptr<IPCCoordinator> coordinator;
+    std::unique_ptr<IPCCoordinator> coordinator;  // Instância para teste
 };
 
 // Teste básico de inicialização

@@ -1,65 +1,100 @@
 /**
  * @file socket_manager.h
- * @brief Gerenciador de sockets locais para comunicação IPC entre processos
+ * @brief Gerenciador de Unix Domain Sockets para comunicação IPC bidirecional
+ * 
+ * Este arquivo implementa comunicação via Unix Domain Sockets (AF_UNIX).
+ * Diferente de pipes, sockets são BIDIRECIONAIS e mais flexíveis.
+ * Ideal para arquiteturas cliente-servidor onde ambos lados podem enviar/receber.
+ * 
+ * VANTAGENS DOS SOCKETS:
+ * - Comunicação bidirecional (ambos lados podem enviar/receber)
+ * - Suporte a múltiplos clientes (não implementado nesta versão)
+ * - Mais flexível que pipes
+ * - Protocolo confiável
  */
 
-#pragma once
+#pragma once  // Garante inclusão única
 
-#include <string>
-#include <sys/socket.h>
-#include <sys/un.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include "../common/logger.h"
+#include <string>        // Para manipulação de strings
+#include <sys/socket.h>  // Para socketpair(), send(), recv()
+#include <sys/un.h>      // Para estruturas de Unix Domain Socket
+#include <unistd.h>      // Para fork(), close()
+#include <sys/wait.h>    // Para waitpid() - esperar processo filho
+#include "../common/logger.h"  // Sistema de logging
 
 namespace ipc_project {
 
-// Estrutura pra guardar dados do socket e mandar pro frontend
+/**
+ * Estrutura que armazena dados de uma operação com socket
+ * Usada para monitoramento e estatísticas no dashboard web
+ * Similar ao PipeData, mas para sockets
+ */
 struct SocketData {
-    std::string message;
-    size_t bytes;
-    double time_ms;
-    std::string status;
-    pid_t sender_pid;
-    pid_t receiver_pid;
+    std::string message;        // Mensagem que foi enviada/recebida
+    size_t bytes;              // Número de bytes transferidos
+    double time_ms;            // Tempo que a operação demorou em milissegundos
+    std::string status;        // Status da operação: "success", "error", etc
+    pid_t sender_pid;          // PID do processo que enviou a mensagem
+    pid_t receiver_pid;        // PID do processo que recebeu a mensagem
 
-    std::string toJSON() const; // converte pra JSON
+    std::string toJSON() const; // Converte os dados para formato JSON
 };
 
-// Classe principal pra gerenciar sockets locais (AF_UNIX)
-// Usa fork() pra criar processos que trocam mensagens via socket
+/**
+ * Classe principal para gerenciar Unix Domain Sockets
+ * 
+ * COMO FUNCIONA:
+ * 1. createSocket() cria um socketpair() e faz fork() para criar processo filho
+ * 2. Ambos os processos (PAI e FILHO) podem enviar/receber mensagens
+ * 3. Comunicação é BIDIRECIONAL: Pai <-> Filho
+ * 4. Usa socketpair() que cria dois endpoints conectados
+ * 
+ * ARQUITETURA:
+ * Processo Pai [socket_fd_[0]] <---> [socket_fd_[1]] Processo Filho
+ * 
+ * DIFERENÇAS DOS PIPES:
+ * - Pipes: unidirecional, mais simples
+ * - Sockets: bidirecional, mais flexível, suporte a protocolos
+ */
 class SocketManager {
 public:
-    SocketManager();
-    ~SocketManager();
+    SocketManager();   // Construtor - inicializa variáveis
+    ~SocketManager();  // Destrutor - fecha socket e limpa recursos
 
-    bool createSocket();        // Cria socket e faz fork
-    bool isParent() const;
+    // ========== Inicialização ==========
+    bool createSocket();        // Cria socketpair e executa fork() para criar processo filho
+    bool isParent() const;      // Verifica se este processo é o pai (true) ou filho (false)
 
-    // Comunicação
-    bool sendMessage(const std::string& message);    // Envia mensagem (pai)
-    std::string receiveMessage();                    // Recebe mensagem (filho)
+    // ========== Comunicação Bidirecional ==========
+    bool sendMessage(const std::string& message);    // Envia mensagem (PAI ou FILHO podem usar)
+    std::string receiveMessage();                     // Recebe mensagem (PAI ou FILHO podem usar)
 
-    // Monitoramento
-    SocketData getLastOperation() const;
-    void printJSON() const;
+    // ========== Monitoramento e Status ==========
+    SocketData getLastOperation() const;  // Retorna dados da última operação (para dashboard)
+    void printJSON() const;               // Imprime status em formato JSON no stdout
 
-    void closeSocket();         // Fecha socket e espra processo filho
-    bool isActive() const;
+    // ========== Controle ==========
+    void closeSocket();         // Fecha o socket e espera o processo filho terminar
+    bool isActive() const;      // Verifica se o socket está ativo e funcionando
 
 private:
-    int socket_fd_[2];           // [0] e [1] são os dois extremos do socketpair
-    pid_t child_pid_;
-    bool is_parent_;
-    bool is_active_;
+    // ========== Descritores de Socket ==========
+    int socket_fd_[2];           // Array com os dois endpoints do socketpair: [0] e [1]
+                                 // Ambos podem ler/escrever (diferente de pipes)
+    
+    // ========== Controle de Processos ==========
+    pid_t child_pid_;            // PID do processo filho (0 se for o próprio filho)
+    bool is_parent_;             // true = processo pai, false = processo filho
+    bool is_active_;             // true se o socket está ativo e funcionando
 
-    SocketData last_operation_;
-    Logger& logger_;
+    // ========== Monitoramento ==========
+    SocketData last_operation_;  // Dados da última operação realizada
+    Logger& logger_;             // Referência ao sistema de logging
 
-    // Auxiliares
-    double getCurrentTimeMs() const;
-    void updateOperation(const std::string& msg, size_t bytes, const std::string& status);
-    void runChildLoop();              // Loop principal do processo filho
+    // ========== Funções Auxiliares ==========
+    double getCurrentTimeMs() const;  // Obtém o tempo atual em milissegundos
+    void updateOperation(const std::string& msg, size_t bytes, const std::string& status); // Atualiza dados da operação
+    void runChildLoop();              // Loop principal executado pelo processo filho
 };
 
 } // namespace ipc_project

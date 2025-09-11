@@ -1,47 +1,65 @@
 /**
  * @file logger.cpp
- * @brief Implementacao do sistema de logging
+ * @brief Implementação do sistema de logging thread-safe
+ * 
+ * Este arquivo implementa todas as funcionalidades da classe Logger:
+ * - Singleton pattern (Meyer's Singleton)
+ * - Thread safety com std::mutex
+ * - Escrita simultânea em arquivo e console
+ * - Formatação de mensagens com timestamps
  */
 
-#include "logger.h"
-#include <iostream>
-#include <iomanip>
-#include <sstream>
+#include "logger.h"        // Header da classe Logger
+#include <iostream>        // Para std::cout
+#include <iomanip>         // Para formatação de datas/horas
+#include <sstream>         // Para stringstream (construção de strings)
 
 namespace ipc_project {
 
-// variavel estatica guarda a unica instancia - thread-safe desde C++11
+/**
+ * Implementação do padrão Singleton usando Meyer's Singleton
+ * Thread-safe desde C++11 - o compilador garante inicialização atômica
+ * @return Referência para a única instância do Logger
+ */
 Logger& Logger::getInstance() {
-    static Logger instance;  // meyer's singleton - mais simples que outros padroes
-    return instance;
+    static Logger instance;  // Meyer's Singleton - mais simples e seguro que outros padrões
+    return instance;         // Retorna sempre a mesma instância
 }
 
-// destrutor - garante que o arquivo seja fechado
+/**
+ * Destrutor - garante que o arquivo de log seja fechado adequadamente
+ * Chamado automaticamente quando o programa termina
+ */
 Logger::~Logger() {
-    close();
+    close();  // Fecha o arquivo de log e limpa recursos
 }
 
+/**
+ * Define o arquivo onde os logs serão salvos
+ * @param filename Caminho para o arquivo de log
+ * @return true se conseguiu abrir o arquivo, false caso contrário
+ */
 bool Logger::setLogFile(const std::string& filename) {
-    std::lock_guard<std::mutex> lock(mutex_);  // Thread safety
+    std::lock_guard<std::mutex> lock(mutex_);  // Thread safety - apenas uma thread por vez
     
-    // Fecha arquivo atual se estiver aberto
+    // Fecha arquivo atual se já estiver aberto
     if (logFile_.is_open()) {
         logFile_.close();
     }
     
-    // Tenta abrir novo arquivo em modo append
+    // Tenta abrir novo arquivo em modo append (adiciona no final)
     logFile_.open(filename, std::ios::app);
     
     if (logFile_.is_open()) {
-        // Escreve cabecalho pra mostrar quando o logging comecou
+        // Escreve cabeçalho para marcar início de uma nova sessão de logging
         logFile_ << "\n" << std::string(50, '=') << "\n";
-        logFile_ << "Logger initialized: " << getCurrentTimestamp() << "\n";
+        logFile_ << "Logger inicializado: " << getCurrentTimestamp() << "\n";
         logFile_ << std::string(50, '=') << "\n";
-        logFile_.flush();  // garante que seja escrito agora
+        logFile_.flush();  // Força escrita imediata no disco
         return true;
     }
     
-    return false;
+    return false;  // Falha ao abrir arquivo
 }
 
 void Logger::setLevel(LogLevel level) {

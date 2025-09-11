@@ -1,13 +1,27 @@
 /**
  * @file test_http_server.cpp
- * @brief Testes unitários para HTTPServer
+ * @brief Testes unitários completos para o servidor HTTP
+ * 
+ * Este arquivo testa todas as funcionalidades do servidor web:
+ * - Inicialização e parada do servidor HTTP
+ * - API REST para controle dos mecanismos IPC
+ * - Integração com IPCCoordinator
+ * - Tratamento de requisições HTTP (GET, POST)
+ * - Serialização JSON das respostas
+ * - CORS e headers HTTP
+ * 
+ * ARQUITETURA DOS TESTES:
+ * - Cada teste usa uma porta diferente (evita conflitos)
+ * - Setup automático do servidor e coordenador IPC
+ * - Testes isolados e independentes
+ * - Verificação completa de responses HTTP
  */
 
-#include <gtest/gtest.h>
-#include "server/http_server.h"
-#include "ipc/ipc_coordinator.h"
-#include <thread>
-#include <chrono>
+#include <gtest/gtest.h>         // Framework de testes do Google
+#include "server/http_server.h"  // Servidor HTTP a ser testado
+#include "ipc/ipc_coordinator.h" // Coordenador IPC para integração
+#include <thread>                // Para sleep() nos testes
+#include <chrono>                // Para medição de tempo
 
 using namespace ipc_project;
 

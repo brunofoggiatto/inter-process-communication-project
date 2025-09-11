@@ -1,22 +1,33 @@
 /**
  * @file pipe_manager.cpp
- * @brief Implementacao de pipes anonimos pra comunicacao IPC
+ * @brief Implementação completa de pipes anônimos para comunicação IPC
+ * 
+ * Este arquivo implementa toda a lógica de comunicação via pipes anônimos:
+ * - Criação de pipes com pipe() + fork()
+ * - Comunicação unidirecional pai -> filho
+ * - Serialização JSON para monitoramento web
+ * - Tratamento de erros e timeouts
+ * - Logging detalhado de todas as operações
  */
 
-#include "pipe_manager.h"
-#include <iostream>
-#include <cstring>
-#include <errno.h>
-#include <chrono>
-#include <sstream>
-#include <iomanip>
-#include <thread>
+#include "pipe_manager.h"   // Header da classe
+#include <iostream>         // Para std::cout, std::cerr
+#include <cstring>          // Para strerror() - mensagens de erro
+#include <errno.h>          // Para errno - código de erro do sistema
+#include <chrono>           // Para medição de tempo de operações
+#include <sstream>          // Para construção de strings JSON
+#include <iomanip>          // Para formatação de timestamps
+#include <thread>           // Para sleep em loops de espera
 
 namespace ipc_project {
 
-// Converte nossa estrutura de dados pro formato JSON seguindo especificação do enunciado
+/**
+ * Converte estrutura PipeData para formato JSON para dashboard web
+ * Segue especificação JSON definida no enunciado do projeto
+ * @return String JSON com todos os dados da operação
+ */
 std::string PipeData::toJSON() const {
-    // Gera timestamp ISO-8601
+    // Gera timestamp ISO-8601 padronizado (formato internacional)
     auto now = std::chrono::system_clock::now();
     auto time_t = std::chrono::system_clock::to_time_t(now);
     auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -27,7 +38,7 @@ std::string PipeData::toJSON() const {
     timestamp << "." << std::setfill('0') << std::setw(3) << ms.count() << "Z";
     
     // Mapeia status interno para padrão da especificação
-    std::string operation_type = "write";
+    std::string operation_type = "write";  // Pipes são principalmente para escrita
     std::string status_type = "success";
     
     if (status == "sent" || status == "write") {

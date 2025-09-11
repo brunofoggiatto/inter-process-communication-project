@@ -1,28 +1,61 @@
 /**
  * @file http_server.cpp
- * @brief Implementação do servidor HTTP para interface web
+ * @brief Implementação completa do servidor HTTP para interface web do sistema IPC
+ * 
+ * Este arquivo implementa um servidor HTTP completo do zero, incluindo:
+ * - Socket server TCP/IP nativo (sem bibliotecas externas)
+ * - Parser de requisições HTTP (GET, POST, OPTIONS)
+ * - Sistema de roteamento para API REST
+ * - Integração com IPCCoordinator para controle remoto
+ * - Suporte a CORS para desenvolvimento frontend
+ * - Servidor de arquivos estáticos (HTML, CSS, JS)
+ * - Serialização/deserialização JSON automática
+ * 
+ * ARQUITETURA DO SERVIDOR:
+ * Cliente HTTP → Socket TCP → Parser HTTP → Router → Handler → Response HTTP
+ *                                                        ↓
+ *                                           IPCCoordinator → IPC Managers
+ * 
+ * ENDPOINTS IMPLEMENTADOS:
+ * GET  /ipc/status           - Status geral do sistema
+ * POST /ipc/start/{mechanism} - Inicia mecanismo (pipes|sockets|shmem)
+ * POST /ipc/stop/{mechanism}  - Para mecanismo
+ * POST /ipc/send/{mechanism}  - Envia mensagem via mecanismo
+ * GET  /ipc/logs/{mechanism}  - Obtém logs do mecanismo
+ * GET  /*                     - Arquivos estáticos (frontend)
  */
 
-#include "http_server.h"
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sstream>
-#include <fstream>
-#include <algorithm>
-#include <cstring>
+#include "http_server.h"  // Header da classe
+#include <sys/socket.h>   // Para socket(), bind(), listen()
+#include <netinet/in.h>   // Para struct sockaddr_in
+#include <arpa/inet.h>    // Para inet_addr()
+#include <unistd.h>       // Para close(), read(), write()
+#include <fcntl.h>        // Para fcntl() - configuração de socket
+#include <sstream>        // Para construção de strings
+#include <fstream>        // Para leitura de arquivos estáticos
+#include <algorithm>      // Para std::find e manipulação de strings
+#include <cstring>        // Para strcmp(), strlen()
 
 namespace ipc_project {
 
-// Implementação HTTPRequest
+// ============================================================================
+// IMPLEMENTAÇÃO DAS ESTRUTURAS HTTP (Request/Response)
+// ============================================================================
+
+/**
+ * Obtém parâmetro da URL com valor padrão
+ * @param key Nome do parâmetro
+ * @param default_val Valor padrão se não encontrado
+ * @return Valor do parâmetro ou valor padrão
+ */
 std::string HTTPRequest::getParam(const std::string& key, const std::string& default_val) const {
     auto it = params.find(key);
     return (it != params.end()) ? it->second : default_val;
 }
 
-// Implementação HTTPResponse
+// ============================================================================
+// IMPLEMENTAÇÃO DA CLASSE HTTPResponse
+// ============================================================================
 HTTPResponse::HTTPResponse(int code, const std::string& type) 
     : status_code(code), content_type(type) {
 }
